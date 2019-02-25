@@ -6,6 +6,7 @@ public class ColisionesCaleb : MonoBehaviour {
 
     public Rigidbody2D Caleb;
     public Rigidbody2D Cubo;
+    public Animator animacion;
     Vector2 v2;
     public float salto;
     public float speed;
@@ -25,25 +26,41 @@ public class ColisionesCaleb : MonoBehaviour {
 
     void Moving()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
+            v2.x = 1f;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            //Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
+            v2.x = 1f;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            Caleb.transform.eulerAngles = new Vector3(0, 0, 180);
-            v2.x = 1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            Caleb.transform.eulerAngles = new Vector3(0, 0, -90);
-            v2.x = 1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            Caleb.transform.eulerAngles = new Vector3(0, 0, 90);
+            Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
             v2.x = -1f;
+        }
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            animacion.SetBool("Running", true);
+        }
+        else if (Input.GetButtonUp("Horizontal"))
+        {
+            animacion.SetBool("Running", false);
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            animacion.SetBool("Running", true);
+        }
+        else if (Input.GetButtonUp("Vertical"))
+        {
+            animacion.SetBool("Running", false);
         }
         float mH = speed * Input.GetAxis("Horizontal");
         float mV = speed * Input.GetAxis("Vertical");
