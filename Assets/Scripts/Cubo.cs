@@ -6,8 +6,9 @@ public class Cubo : MonoBehaviour {
 
     public Rigidbody2D Caleb;
     public Rigidbody2D Cubos;
+    bool isTouching = false;
 
-	void Start () {
+    void Start () {
 		
 	}
 	
@@ -26,8 +27,10 @@ public class Cubo : MonoBehaviour {
 
     void ColisionCaleb()
     {
-        if (Input.GetKey(KeyCode.E) == false)
+        
+        if (Input.GetKey(KeyCode.E) == false/* && isTouching == false*/)
         {
+            isTouching = true;
             Cubos.velocity = new Vector3(0, 0, 0);
             Caleb.velocity = new Vector3(0, 0, 0);
             if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0))
@@ -52,8 +55,9 @@ public class Cubo : MonoBehaviour {
 
             //}
         }
-        else if (Input.GetKey(KeyCode.E) == true)
+        else if (Input.GetKey(KeyCode.E) == true/*&& isTouching == true*/)
         {
+            isTouching = false;
             Cubos.velocity = new Vector3(0, 0, 0);
             Caleb.velocity = new Vector3(0, 0, 0);
             if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0))
