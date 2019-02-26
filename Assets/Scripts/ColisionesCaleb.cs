@@ -10,15 +10,16 @@ public class ColisionesCaleb : MonoBehaviour {
     Vector2 v2;
     public float salto;
     public float speed;
-    public bool isTouching = false;
+    bool isTouching = false;
+    bool isWalking = false;
 
-    void Start () {
-		
-	}
-	
-	void Update () {
+    void Start() {
+
+    }
+
+    void Update() {
         Moving();
-	}
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -50,6 +51,10 @@ public class ColisionesCaleb : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.D) && isTouching == true || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true)
         { }
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            Caleb.velocity = new Vector3(0, 0, 0);
+        }
         if (Input.GetKeyDown(KeyCode.A) && isTouching == false || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == false)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -57,14 +62,20 @@ public class ColisionesCaleb : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.A) && isTouching == true || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true)
         { }
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            Caleb.velocity = new Vector3(0, 0, 0);
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
+            animacion.SetBool("Walking", false);
+            isWalking = false;
             isTouching = false;
             speed = 2.5f;
         }
 
         //Animations
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && isWalking == false)
         {
             animacion.SetBool("Running", true);
         }
@@ -72,13 +83,25 @@ public class ColisionesCaleb : MonoBehaviour {
         {
             animacion.SetBool("Running", false);
         }
-        if (Input.GetButton("Vertical"))
+        if (Input.GetButton("Vertical") && isWalking == false)
         {
             animacion.SetBool("Running", true);
         }
         else if (Input.GetButtonUp("Vertical"))
         {
             animacion.SetBool("Running", false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftControl) || isTouching == true)
+        {
+            speed = 1.5f;
+            animacion.SetBool("Walking", true);
+            isWalking = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animacion.SetBool("Walking", false);
+            speed = 2.5f;
+            isWalking = false;
         }
 
         //Movement
