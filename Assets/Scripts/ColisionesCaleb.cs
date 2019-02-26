@@ -26,22 +26,22 @@ public class ColisionesCaleb : MonoBehaviour {
 
     void Moving()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             //Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             //Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
             v2.x = -1f;
