@@ -7,6 +7,8 @@ public class Cubo : MonoBehaviour {
     public Rigidbody2D Caleb;
     public Rigidbody2D Cubos;
     bool isTouching = false;
+    public bool isWalkingUp = false;
+    public bool isWalkingDowm = false;
 
     void Start () {
 		
@@ -14,6 +16,7 @@ public class Cubo : MonoBehaviour {
 	
 	void Update () {
         Cubos.velocity = new Vector3(0, 0, 0);
+        DetectarPosCaleb();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -23,7 +26,26 @@ public class Cubo : MonoBehaviour {
             ColisionCaleb();
         }
     }
-
+    
+    void DetectarPosCaleb()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            isWalkingUp = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            isWalkingUp = false;
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            isWalkingDowm = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            isWalkingDowm = false;
+        }
+    }
 
     void ColisionCaleb()
     {
@@ -33,14 +55,24 @@ public class Cubo : MonoBehaviour {
             isTouching = true;
             Cubos.velocity = new Vector3(0, 0, 0);
             Caleb.velocity = new Vector3(0, 0, 0);
-            if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0))
+            if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0) && isWalkingUp == false && isWalkingDowm == false)
             {
                 gameObject.transform.position = new Vector3(Caleb.position.x + 1.13f, Caleb.position.y + 0.5f);
                 gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 180, 0))
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 180, 0) && isWalkingUp == false && isWalkingDowm == false)
             {
                 gameObject.transform.position = new Vector3(Caleb.position.x - 1.13f, Caleb.position.y + 0.5f);
+                gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
+            }
+            else if (isWalkingUp == true)
+            {
+                gameObject.transform.position = new Vector3(Caleb.position.x , Caleb.position.y + 2.25f);
+                gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
+            }
+            else if (isWalkingDowm == true)
+            {
+                gameObject.transform.position = new Vector3(Caleb.position.x, Caleb.position.y - 0.6f);
                 gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
             //else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 90))

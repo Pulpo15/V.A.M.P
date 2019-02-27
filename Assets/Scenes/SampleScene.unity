@@ -943,6 +943,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Caleb: {fileID: 1844334612}
   Cubos: {fileID: 556990606}
+  isWalkingUp: 0
+  isWalkingDowm: 0
 --- !u!50 &556990606
 Rigidbody2D:
   serializedVersion: 4
@@ -1040,7 +1042,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 556990604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.745, y: 1.039, z: 0}
+  m_LocalPosition: {x: 3.745, y: 1.93, z: 0}
   m_LocalScale: {x: 0.07608564, y: 0.07699938, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1882,7 +1884,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1340816363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.745, y: -1.062, z: 0}
+  m_LocalPosition: {x: -0.04, y: -2.78, z: 0}
   m_LocalScale: {x: 0.07608564, y: 0.07699938, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1921,6 +1923,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Caleb: {fileID: 1844334612}
   Cubos: {fileID: 1340816367}
+  isWalkingUp: 0
+  isWalkingDowm: 0
 --- !u!1 &1384861149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Caleb: {fileID: 1844334612}
   Cubos: {fileID: 1384861150}
+  isWalkingUp: 0
+  isWalkingDowm: 0
 --- !u!1 &1418702362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,7 +2696,6 @@ MonoBehaviour:
   animacion: {fileID: 0}
   salto: 0
   speed: 5
-  isTouching: 0
 --- !u!50 &1788974215
 Rigidbody2D:
   serializedVersion: 4
@@ -2872,7 +2877,6 @@ MonoBehaviour:
   animacion: {fileID: 1844334615}
   salto: 0
   speed: 2.5
-  isTouching: 0
 --- !u!70 &1844334614
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
