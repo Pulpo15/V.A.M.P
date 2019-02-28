@@ -38,23 +38,22 @@ public class ColisionesCaleb : MonoBehaviour {
     void Moving()
     {
         //Movement Direction
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) && isTouching == false || Input.GetKeyDown(KeyCode.UpArrow) && isTouching == false)
+        {
+            Caleb.transform.eulerAngles = new Vector3(0, 0, 0.1f);
+        }
+        else if (Input.GetKeyUp(KeyCode.S) && isTouching == true || Input.GetKeyUp(KeyCode.DownArrow) && isTouching == true)
         { }
-        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.S) && isTouching == false || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == false)
+        {
+            Caleb.transform.eulerAngles = new Vector3(0, 0, 0.2f);
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && isTouching == true || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == true)
         { }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        { }
-        else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-        { }
-
         if (Input.GetKeyDown(KeyCode.D) && isTouching == false || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == false)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
-        }
-        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            Caleb.velocity = new Vector3(0, 0, 0);
         }
         else if (Input.GetKeyDown(KeyCode.D) && isTouching == true || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true)
         { }
@@ -63,12 +62,9 @@ public class ColisionesCaleb : MonoBehaviour {
             Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
             v2.x = -1f;
         }
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            Caleb.velocity = new Vector3(0, 0, 0);
-        }
         else if (Input.GetKeyDown(KeyCode.A) && isTouching == true || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true)
         { }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             animacion.SetBool("Walking", false);
