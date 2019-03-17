@@ -46,7 +46,7 @@ public class Cubo : MonoBehaviour {
             }
             else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f))
             {
-                gameObject.transform.position = new Vector3(Caleb.position.x , Caleb.position.y + 2.2f);
+                gameObject.transform.position = new Vector3(Caleb.position.x , Caleb.position.y + 2.2643f);
                 gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
             else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f))
@@ -73,7 +73,7 @@ public class Cubo : MonoBehaviour {
             }
             else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f))
             {
-                gameObject.transform.position = new Vector3(Caleb.position.x, Caleb.position.y + 2.25f);
+                gameObject.transform.position = new Vector3(Caleb.position.x, Caleb.position.y + 2.29f);
                 gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
             else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f))
