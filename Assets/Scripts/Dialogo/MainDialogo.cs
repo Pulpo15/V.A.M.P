@@ -7,6 +7,7 @@ public class MainDialogo : MonoBehaviour {
 
     public Text nameText;
     public Text dialogoText;
+    public Animator animator;
 
     private Queue<string> sentences;
 
@@ -17,6 +18,8 @@ public class MainDialogo : MonoBehaviour {
 
     public void StartDialogo(Dialogo dialogo)
     {
+        animator.SetBool("isOpen", true);
+
         nameText.text = dialogo.name;
 
         sentences.Clear();
@@ -31,7 +34,7 @@ public class MainDialogo : MonoBehaviour {
 
     public void ShowNextSentence()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Return))
         {
             if (sentences.Count == 0)
             {
@@ -47,7 +50,7 @@ public class MainDialogo : MonoBehaviour {
 
     void EndDialogo()
     {
-        Debug.Log("Fin de texto");
+        animator.SetBool("isOpen", false);
     }
 
   

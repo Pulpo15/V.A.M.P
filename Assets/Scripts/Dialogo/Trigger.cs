@@ -8,9 +8,12 @@ public class Trigger : MonoBehaviour
     public Dialogo dialogo;
 
 
-    public void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        FindObjectOfType<MainDialogo>().StartDialogo(dialogo);
+        if (col.gameObject.name == "Caleb")
+        {
+            FindObjectOfType<MainDialogo>().StartDialogo(dialogo);
+        }
     }
 
 }
