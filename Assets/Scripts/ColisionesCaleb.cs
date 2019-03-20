@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColisionesCaleb : MonoBehaviour {
 
@@ -16,7 +17,8 @@ public class ColisionesCaleb : MonoBehaviour {
     public float speed;
     public float vida;
     public static float vidaParaLamia;
-    public int reputacion = 0;
+    private int reputacion = 0;
+    public static int repuParaLamia = 0;
     bool isTouching = false;
     bool isWalking = false;
     public float dashSpeed;
@@ -27,6 +29,8 @@ public class ColisionesCaleb : MonoBehaviour {
     private float dashDeelay = 0;
     public static bool isDashing = false;
     public static float vidaRecibidaDeLamia;
+    public Slider hpBar;
+    
 
 
 
@@ -38,9 +42,29 @@ public class ColisionesCaleb : MonoBehaviour {
     void Update() {
         Moving();
         Dash();
+        Vida();
+        vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         vidaParaLamia = vida;
-        vidaRecibidaDeLamia = lamiaScript.vidaCaleb;
+        repuParaLamia = reputacion;
 
+        hpBar.value = vida;
+        print(vida);
+  
+
+    }
+
+    void Vida()
+    {
+        if (vida >= 100)
+        {
+            vida = 100f;
+        }
+        else if (vida <= 0)
+        {
+            print("HasMuerto");
+            Destroy(gameObject);
+
+        }
     }
 
     void Dash(){
@@ -122,25 +146,30 @@ public class ColisionesCaleb : MonoBehaviour {
             {
                 print("+10 de vida");
                 vida = vida + 10;
-                reputacion = reputacion - 5;
+                reputacion = 10;
                 Rata.enabled = false;
                 SpriteRata.enabled = false;
+
+                Humano.enabled = false;
+                SpriteHumano.enabled = false;
             }
         }
         else if (collision.gameObject.name == "Humano")
         {
             if (Input.GetMouseButton(0))
             {
-                print("+20 de vida");
+                print("+25 de vida");
                 vida = vida + 25;
-                reputacion = reputacion + 20;
+                reputacion = 20;
                 Humano.enabled = false;
                 SpriteHumano.enabled = false;
+
+                Rata.enabled = false;
+                SpriteRata.enabled = false;
             }
         }
         else if (collision.gameObject.name == "Lamia")
         {
-            print("-15 de vida");
             vida = vidaRecibidaDeLamia;
         }
     }
