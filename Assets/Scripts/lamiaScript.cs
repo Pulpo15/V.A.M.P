@@ -11,6 +11,7 @@ public class lamiaScript : MonoBehaviour {
     private static float vidaCaleb = 20f;
     public static float vidaParaCaleb;
     private bool cantMove = false;
+    private bool checkMove = false;
     public float startTimeToWait;
     private float timeToWait = 0f;
     public Collider2D ColliderLamia;
@@ -35,6 +36,7 @@ public class lamiaScript : MonoBehaviour {
         attackDeelay -= Time.deltaTime;
         vidaParaCaleb = vidaCaleb;
         print("Repu en lamia" + repu);
+        Perseguir();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -59,12 +61,12 @@ public class lamiaScript : MonoBehaviour {
     {
         if (collider.gameObject.name == "Caleb" && repu == 10 && numCol == 2 && cantMove == false|| collider.gameObject.name == "Caleb" && repu == 20 && numCol == 2 && cantMove == false)
         {
-            Perseguir();
+            checkMove = true;
             print("Rata");
         }
         if (collider.gameObject.name == "Caleb" && repu == 20 && numCol == 1 && cantMove == false)
         {
-            Perseguir();
+            checkMove = true;
             print("Humano");
         }
     }
@@ -79,6 +81,7 @@ public class lamiaScript : MonoBehaviour {
                 transform.position = Vector2.MoveTowards(transform.position, target.position, 0);
                 Lamia.bodyType = RigidbodyType2D.Static;
                 cantMove = true;
+                checkMove = false;
             }
         }
     }
@@ -106,8 +109,9 @@ public class lamiaScript : MonoBehaviour {
     void Perseguir ()
     {
         timeToWait -= Time.deltaTime;
-        if (cantMove == false)
+        if (checkMove == true)
         {
+
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
         else if (timeToWait <= 0)

@@ -10,6 +10,8 @@ public class ColisionesCaleb : MonoBehaviour {
     public Animator animacion;
     public Collider2D Rata;
     public Collider2D Humano;
+    public Collider2D Puerta1;
+    public SpriteRenderer SpritePuerta1;
     public SpriteRenderer SpriteRata;
     public SpriteRenderer SpriteHumano;
     Vector2 v2;
@@ -130,6 +132,11 @@ public class ColisionesCaleb : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.name == "Diario")
+        {
+            Puerta1.enabled = false;
+            SpritePuerta1.enabled = false;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
