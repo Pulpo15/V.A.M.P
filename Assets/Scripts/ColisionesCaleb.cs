@@ -11,6 +11,10 @@ public class ColisionesCaleb : MonoBehaviour {
     public Collider2D Rata;
     public Collider2D Humano;
     public Collider2D Puerta1;
+    public Collider2D Puerta2;
+    public Collider2D Key;
+    public SpriteRenderer SpriteKey;
+    public SpriteRenderer SpritePuerta2;
     public SpriteRenderer SpritePuerta1;
     public SpriteRenderer SpriteRata;
     public SpriteRenderer SpriteHumano;
@@ -32,11 +36,8 @@ public class ColisionesCaleb : MonoBehaviour {
     public static bool isDashing = false;
     public static float vidaRecibidaDeLamia;
     public Slider hpBar;
+    public bool haveKey = false;
     
-
-
-
-
     void Start() {
         dashTime = startDashTime;
     }
@@ -48,12 +49,9 @@ public class ColisionesCaleb : MonoBehaviour {
         vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         vidaParaLamia = vida;
         repuParaLamia = reputacion;
-
         hpBar.value = vida;
         print(vida);
-  
-
-    }
+      }
 
     void Vida()
     {
@@ -65,7 +63,6 @@ public class ColisionesCaleb : MonoBehaviour {
         {
             print("HasMuerto");
             Destroy(gameObject);
-
         }
     }
 
@@ -73,22 +70,22 @@ public class ColisionesCaleb : MonoBehaviour {
         dashDeelay -= Time.deltaTime;
         if (direction == 0)
         {
-            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0 || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
             {
                 direction = 1;
                 dashDeelay = startDashDeelay;
             }
-            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0 || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
             {
                 direction = 2;
                 dashDeelay = startDashDeelay;
             }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
+            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0 || Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
             {
                 direction = 3;
                 dashDeelay = startDashDeelay;
             }
-            else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
+            else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0 || Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.Space) && dashDeelay <= 0)
             {
                 direction = 4;
                 dashDeelay = startDashDeelay;
@@ -130,8 +127,15 @@ public class ColisionesCaleb : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "Llave")
+        {
+
+            haveKey = true;
+            Key.enabled = false;
+            SpriteKey.enabled = false;
+        }
         if (collision.gameObject.name == "Diario")
         {
             Puerta1.enabled = false;
@@ -139,15 +143,30 @@ public class ColisionesCaleb : MonoBehaviour {
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Cubo")
         {
-            
             speed = 1.5f;
             isTouching = true;
         }
-        else if (collision.gameObject.name == "Rata")
+
+        if (collision.gameObject.name == "Puerta")
+        {
+            if (haveKey)
+            {
+                Puerta2.enabled = false;
+                SpritePuerta2.enabled = false;
+            }
+        }
+    }
+
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.name == "Rata")
         {
             if (Input.GetMouseButton(0))
             {
@@ -156,7 +175,6 @@ public class ColisionesCaleb : MonoBehaviour {
                 reputacion = 10;
                 Rata.enabled = false;
                 SpriteRata.enabled = false;
-
                 Humano.enabled = false;
                 SpriteHumano.enabled = false;
             }
@@ -170,7 +188,6 @@ public class ColisionesCaleb : MonoBehaviour {
                 reputacion = 20;
                 Humano.enabled = false;
                 SpriteHumano.enabled = false;
-
                 Rata.enabled = false;
                 SpriteRata.enabled = false;
             }
@@ -188,28 +205,24 @@ public class ColisionesCaleb : MonoBehaviour {
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0.1f);
         }
-        else if (Input.GetKeyUp(KeyCode.S) && isTouching == true || Input.GetKeyUp(KeyCode.DownArrow) && isTouching == true)
-        { }
+        else if (Input.GetKeyUp(KeyCode.S) && isTouching == true || Input.GetKeyUp(KeyCode.DownArrow) && isTouching == true) { }
         if (Input.GetKeyDown(KeyCode.S) && isTouching == false || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == false)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0.2f);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && isTouching == true || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == true)
-        { }
+        else if (Input.GetKeyDown(KeyCode.S) && isTouching == true || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == true) { }
         if (Input.GetKeyDown(KeyCode.D) && isTouching == false || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == false)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        else if (Input.GetKeyDown(KeyCode.D) && isTouching == true || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true)
-        { }
+        else if (Input.GetKeyDown(KeyCode.D) && isTouching == true || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true) { }
         if (Input.GetKeyDown(KeyCode.A) && isTouching == false || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == false)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
             v2.x = -1f;
         }
-        else if (Input.GetKeyDown(KeyCode.A) && isTouching == true || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true)
-        { }
+        else if (Input.GetKeyDown(KeyCode.A) && isTouching == true || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true) { }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
