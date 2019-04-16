@@ -23,7 +23,11 @@ public class Trigger : MonoBehaviour
     public bool dialogoLlave = false;
     public int dialogoCaja = 1;
     public bool dialogoPuerta = false;
-    public BoxCollider2D BoxPuerta1;
+    public bool haveKey = false;
+    public bool diaologoSalir = false;
+    public Collider2D salirAlmacen;
+    //public BoxCollider2D BoxPuerta1;
+    //public Transform Puerta1;
 
 
     private void Start()
@@ -39,6 +43,7 @@ public class Trigger : MonoBehaviour
     private void Update()
     {
         ShowText();
+        print(Dialog);
     }
 
     void ShowText()
@@ -94,8 +99,9 @@ public class Trigger : MonoBehaviour
         {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
-            Dialog = 7;
+            Dialog = 8;
             Objetvios.text = "Encuentra una Salida";
+            isOnText = false;
         }
         //Dialogo Llave
         if (dialogoLlave)
@@ -130,8 +136,28 @@ public class Trigger : MonoBehaviour
             Texto.enabled = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             dialogoPuerta = false;
-            
-            print("asd");
+        }
+        //Dialogo Salir Almacén
+        if (isOnText && diaologoSalir && Dialog == 8)
+        {
+            salirAlmacen.enabled = false;
+            VarTexto.text = "*Uhhhh*";
+            Texto.enabled = true;
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Dialog = 9;
+        }
+        if (isOnText && diaologoSalir && Input.GetKeyDown(KeyCode.Return) && Dialog == 9)
+        {
+            VarTexto.text = "¡Debo apresurarme y buscar ayuda ya!";
+            Dialog = 10;
+        }
+        else if (isOnText && diaologoSalir && Input.GetKeyDown(KeyCode.Return) && Dialog == 10)
+        {
+            Texto.enabled = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            isOnText = false;
+            diaologoSalir = false;
+            Dialog = 11;
         }
     }
 
@@ -148,6 +174,13 @@ public class Trigger : MonoBehaviour
         if (col.gameObject.name == "Llave")
         {
             dialogoLlave = true;
+            haveKey = true;
+        }
+        if (col.gameObject.name == "SalirAlmacén")
+        {
+            isOnText = true;
+            diaologoSalir = true;
+
         }
         //if (col.gameObject.name == "Puerta")
         //{
@@ -162,18 +195,19 @@ public class Trigger : MonoBehaviour
             dialogoCaja++;
             isOnText = true;
         }
-        if (col.gameObject.name == "Puerta")
+        if (col.gameObject.name == "Puerta" && !haveKey)
         {
             //isOnText = true;
             //BoxPuerta1.size = new Vector3(0.4205475f, 2.217735f, 1);
+            //BoxPuerta1.size = new Vector3(1, 2.217735f, 1);
+            //Puerta1.localScale = new Vector3(1, 2.217735f, 1);
             dialogoPuerta = true;
             VarTexto.text = "Parece cerrada, voy a necesitar algo para abrirla";
             Texto.enabled = true;
-            Caleb.bodyType = RigidbodyType2D.Static;
-
-
-
+            //Caleb.bodyType = RigidbodyType2D.Static;
+            //Puerta1.localScale = new Vector3(0.4205475f, 2.217735f, 1);
         }
+        
     }
 
 }

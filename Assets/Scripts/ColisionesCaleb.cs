@@ -131,7 +131,6 @@ public class ColisionesCaleb : MonoBehaviour {
     {
         if (collision.gameObject.name == "Llave")
         {
-
             haveKey = true;
             Key.enabled = false;
             SpriteKey.enabled = false;

@@ -12,7 +12,10 @@ public class Cubo : MonoBehaviour {
     //public bool isWalkingDowm = false;
 
     void Start () {
-		
+		for (int i = 0; i < 4; i++)
+        {
+            isTouching[i] = false;
+        }
 	}
 	
 	void Update () {
@@ -86,33 +89,33 @@ public class Cubo : MonoBehaviour {
     void CheckColisionCaleb()
     {
         
-        if (Input.GetKey(KeyCode.E) == false/* && isTouching == false*/)
+        if (Input.GetKey(KeyCode.E) == false)
         {
             //isTouching = true;
             Cubos.velocity = new Vector3(0, 0, 0);
             Caleb.velocity = new Vector3(0, 0, 0);
-            if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0))
+            if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0) && !isTouching[0])
             {
                 //Derecha
                 isTouching[0] = true;
                 //gameObject.transform.position = new Vector3(Caleb.position.x + 1.13f, Caleb.position.y + 0.5f);
                 //gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 180, 0))
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 180, 0) && !isTouching[1])
             {
                 //izquierda
                 isTouching[1] = true;
             //    gameObject.transform.position = new Vector3(Caleb.position.x - 1.13f, Caleb.position.y + 0.5f);
             //    gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f))
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f) && !isTouching[2])
             {
                 //Arriba
                 isTouching[2] = true;
             //    gameObject.transform.position = new Vector3(Caleb.position.x, Caleb.position.y + 2.2643f);
             //    gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f))
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f) && !isTouching[3])
             {
                 //Abajo
                 isTouching[3] = true;
