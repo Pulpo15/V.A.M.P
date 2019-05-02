@@ -47,6 +47,7 @@ public class RayCast : MonoBehaviour {
         if (collision.gameObject.name == "Cubo")
         {
             Luz.enabled = true;
+            SRLuz.enabled = true;
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rata : MonoBehaviour {
 
+    public GameObject Humano;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,13 @@ public class Rata : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
+        {
+            Destroy(gameObject);
+            Destroy(Humano);
+        }
+    }
 }

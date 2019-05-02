@@ -10,6 +10,8 @@ public class Trigger : MonoBehaviour
     public Canvas Texto;
     public Canvas CanvasObjetivos;
     public Canvas Diario1;
+    public Canvas Diario2;
+    public Canvas Diario3;
     public Text VarTexto;
     public Text VarTitulo;
     public Text Objetvios;
@@ -20,12 +22,18 @@ public class Trigger : MonoBehaviour
     public int Dialog = 0;
     public Rigidbody2D Caleb;
     public SpriteRenderer SpriteDiario;
+    public SpriteRenderer SpriteDiario2;
+    public SpriteRenderer SpriteDiario3;
     public bool dialogoLlave = false;
     public int dialogoCaja = 1;
     public bool dialogoPuerta = false;
     public bool haveKey = false;
     public bool diaologoSalir = false;
     public Collider2D salirAlmacen;
+    private bool isOnHome;
+    private bool isOnLight;
+    private bool diario3;
+    private bool tlf;
     //public BoxCollider2D BoxPuerta1;
     //public Transform Puerta1;
 
@@ -107,6 +115,7 @@ public class Trigger : MonoBehaviour
         if (dialogoLlave)
         {
             VarTexto.text = "Seguro que esta llave sirve para algo.";
+            Objetvios.text = "Usa la llave para salir del Almacén";
             Texto.enabled = true;
             Caleb.bodyType = RigidbodyType2D.Static;
         }
@@ -150,6 +159,7 @@ public class Trigger : MonoBehaviour
         {
             VarTexto.text = "¡Debo apresurarme y buscar ayuda ya!";
             Dialog = 10;
+            Objetvios.text = "Busca ayuda";
         }
         else if (isOnText && diaologoSalir && Input.GetKeyDown(KeyCode.Return) && Dialog == 10)
         {
@@ -158,6 +168,98 @@ public class Trigger : MonoBehaviour
             isOnText = false;
             diaologoSalir = false;
             Dialog = 11;
+        }
+        if (isOnText && Dialog == 11)
+        {
+            Diario2.enabled = true;
+            SpriteDiario2.enabled = false;
+            Caleb.bodyType = RigidbodyType2D.Static;
+        }
+        if (isOnText && Dialog == 11 && Input.GetKey(KeyCode.Return))
+        {
+            Diario2.enabled = false;
+            Texto.enabled = true;
+            VarTexto.text = "No se que esta pasando, tengo mucha sed.";
+            Objetvios.text = "Aliméntate de un humano o una rata.";
+            Dialog = 12;
+            print("asd");
+        }
+        else if (isOnText && Dialog == 12 && Input.GetKeyDown(KeyCode.Return))
+        {
+            VarTexto.text = "(Aliméntate de un humano o una rata, tu elección repercutirá en el futuro, acércate a tu elección y pulsa intro).";
+            Dialog = 13;
+        }
+        else if (isOnText && Dialog == 13 && Input.GetKeyDown(KeyCode.Return))
+        {
+            Texto.enabled = false;
+            isOnText = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 14;
+        }
+        if (isOnText && Dialog == 14 && isOnHome)
+        {
+            Texto.enabled = true;
+            VarTexto.text = "Que me está pasando, yo no quería hacer eso";
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Dialog = 15;
+        }
+        else if (isOnText && Dialog == 15 && Input.GetKeyDown(KeyCode.Return) && isOnHome)
+        {
+            Objetvios.text = "Accede al segundo piso";
+            Dialog = 16;
+            VarTexto.text = "Ya se está haciendo de día, seguro que encuentro ayuda en esta casa";
+        }
+        else if (isOnText && Dialog == 16 && Input.GetKeyDown(KeyCode.Return) && isOnHome)
+        {
+            Texto.enabled = false;
+            isOnHome = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 17;
+        }
+        if (diario3 && Dialog == 17)
+        {
+            Diario3.enabled = true;
+            Caleb.bodyType = RigidbodyType2D.Static;
+        }
+        if (diario3 && Input.GetKeyDown(KeyCode.Return) && Dialog == 17)
+        {
+            Diario3.enabled = false;
+            SpriteDiario3.enabled = false;
+            diario3 = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 18;
+        }
+        if (isOnText && Dialog == 18 && isOnLight)
+        {
+            Texto.enabled = true;
+            VarTexto.text = "Tengo que encontrar algo para bloquear la luz";
+            Caleb.bodyType = RigidbodyType2D.Static;
+        }
+        if (isOnText && Dialog == 18 && Input.GetKeyDown(KeyCode.Return) && isOnLight)
+        {
+            Texto.enabled = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 19;
+        }
+        if (tlf && Dialog == 19)
+        {
+            VarTitulo.text = "????";
+            VarTexto.text = "Veo que ya estas despierto. Seguramente tienes muchas preguntas. Todo a su debido tiempo";
+            Texto.enabled = true;
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Dialog = 20;
+        }
+        else if (tlf && Dialog == 20 && Input.GetKeyDown(KeyCode.Return))
+        {
+            VarTexto.text = "Si tanto quieres saber ve al laboratorio, supongo que ya sabes dónde se encuentra.";
+            Dialog = 21;
+        }
+        else if (tlf && Dialog == 21 && Input.GetKeyDown(KeyCode.Return))
+        {
+            Texto.enabled = false;
+            tlf = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 22;
         }
     }
 
@@ -181,6 +283,28 @@ public class Trigger : MonoBehaviour
             isOnText = true;
             diaologoSalir = true;
 
+        }
+        if (col.gameObject.name == "Diario2")
+        {
+            isOnText = true;
+        }
+        if (col.gameObject.name == "EntradaCasa")
+        {
+            isOnText = true;
+            isOnHome = true;
+        }
+        if (col.gameObject.name == "Luz")
+        {
+            isOnText = true;
+            isOnLight = true;
+        }
+        if (col.gameObject.name == "Diario3")
+        {
+            diario3 = true;
+        }
+        if (col.gameObject.name == "Telefono")
+        {
+            tlf = true;
         }
         //if (col.gameObject.name == "Puerta")
         //{

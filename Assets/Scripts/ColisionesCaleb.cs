@@ -140,6 +140,10 @@ public class ColisionesCaleb : MonoBehaviour {
             Puerta1.enabled = false;
             SpritePuerta1.enabled = false;
         }
+        if (collision.gameObject.name == "Acceder2Piso")
+        {
+            gameObject.transform.position = new Vector3(26, 109);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
