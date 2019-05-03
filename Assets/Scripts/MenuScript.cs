@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
+    
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,7 +17,7 @@ public class MenuScript : MonoBehaviour {
 		
 	}
 
-    public void StartScene()
+    public void ChangeScene()
     {
         SceneManager.LoadScene(1);
     }

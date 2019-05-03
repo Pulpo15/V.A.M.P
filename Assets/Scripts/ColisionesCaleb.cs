@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ColisionesCaleb : MonoBehaviour {
@@ -46,6 +47,7 @@ public class ColisionesCaleb : MonoBehaviour {
         Moving();
         Dash();
         Vida();
+        ExitToMenu();
         vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         vidaParaLamia = vida;
         repuParaLamia = reputacion;
@@ -270,5 +272,13 @@ public class ColisionesCaleb : MonoBehaviour {
         float mV = speed * Input.GetAxis("Vertical");
         Caleb.velocity = new Vector3(mH * speed, Caleb.velocity.y);
         Caleb.velocity = new Vector3(Caleb.velocity.x, mV * speed);
+    }
+
+    void ExitToMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0); 
+        }
     }
 }
