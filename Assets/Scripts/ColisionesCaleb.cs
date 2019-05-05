@@ -38,9 +38,15 @@ public class ColisionesCaleb : MonoBehaviour {
     public static float vidaRecibidaDeLamia;
     public Slider hpBar;
     public bool haveKey = false;
-    
+
+    private float timeToWait = 10.0f;
+    private float timeToWaitCur;
+    private int numEnter;
+
     void Start() {
         dashTime = startDashTime;
+        timeToWaitCur = timeToWait;
+        isWalking = true;
     }
 
     void Update() {
@@ -53,7 +59,24 @@ public class ColisionesCaleb : MonoBehaviour {
         repuParaLamia = reputacion;
         hpBar.value = vida;
         print(vida);
+        CanWalk();
       }
+
+    void CanWalk()
+    {
+        timeToWaitCur -= Time.deltaTime;
+        if (timeToWaitCur <= 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                numEnter++;
+            }
+            if (numEnter == 2)
+            {
+                isWalking = false;
+            }
+        }
+    }
 
     void Vida()
     {
@@ -206,28 +229,28 @@ public class ColisionesCaleb : MonoBehaviour {
     void Moving()
     {
         //Movement Direction
-        if (Input.GetKeyDown(KeyCode.W) && isTouching == false || Input.GetKeyDown(KeyCode.UpArrow) && isTouching == false)
+        if (Input.GetKeyDown(KeyCode.W) && isTouching == false && !isWalking || Input.GetKeyDown(KeyCode.UpArrow) && isTouching == false && !isWalking)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0.1f);
         }
-        else if (Input.GetKeyUp(KeyCode.S) && isTouching == true || Input.GetKeyUp(KeyCode.DownArrow) && isTouching == true) { }
-        if (Input.GetKeyDown(KeyCode.S) && isTouching == false || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == false)
+        else if (Input.GetKeyUp(KeyCode.S) && isTouching == true && isWalking || Input.GetKeyUp(KeyCode.DownArrow) && isTouching == true && isWalking) { }
+        if (Input.GetKeyDown(KeyCode.S) && isTouching == false && !isWalking || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == false && !isWalking)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0.2f);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && isTouching == true || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == true) { }
-        if (Input.GetKeyDown(KeyCode.D) && isTouching == false || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == false)
+        else if (Input.GetKeyDown(KeyCode.S) && isTouching == true && isWalking || Input.GetKeyDown(KeyCode.DownArrow) && isTouching == true && isWalking) { }
+        if (Input.GetKeyDown(KeyCode.D) && isTouching == false && !isWalking || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == false && !isWalking)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 0, 0);
             v2.x = 1f;
         }
-        else if (Input.GetKeyDown(KeyCode.D) && isTouching == true || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true) { }
-        if (Input.GetKeyDown(KeyCode.A) && isTouching == false || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == false)
+        else if (Input.GetKeyDown(KeyCode.D) && isTouching == true && isWalking || Input.GetKeyDown(KeyCode.RightArrow) && isTouching == true && isWalking) { }
+        if (Input.GetKeyDown(KeyCode.A) && isTouching == false && !isWalking || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == false && !isWalking)
         {
             Caleb.transform.eulerAngles = new Vector3(0, 180, 0);
             v2.x = -1f;
         }
-        else if (Input.GetKeyDown(KeyCode.A) && isTouching == true || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true) { }
+        else if (Input.GetKeyDown(KeyCode.A) && isTouching == true && isWalking || Input.GetKeyDown(KeyCode.LeftArrow) && isTouching == true && isWalking) { }
 
         if (Input.GetKeyDown(KeyCode.E))
         {

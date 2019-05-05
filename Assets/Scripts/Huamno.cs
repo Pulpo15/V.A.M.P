@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Huamno : MonoBehaviour {
 
-    public SpriteRenderer Humano;
     public GameObject Rata;
+    public Canvas RenderGris;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,6 +20,7 @@ public class Huamno : MonoBehaviour {
     {
         if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
         {
+            RenderGris.enabled = false;
             Destroy(gameObject);
             Destroy(Rata);
         }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class Rata : MonoBehaviour {
 
     public GameObject Humano;
+    public Canvas RenderGris;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,6 +21,7 @@ public class Rata : MonoBehaviour {
     {
         if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
         {
+            RenderGris.enabled = false;
             Destroy(gameObject);
             Destroy(Humano);
         }

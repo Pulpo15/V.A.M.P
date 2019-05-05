@@ -12,6 +12,7 @@ public class Trigger : MonoBehaviour
     public Canvas Diario1;
     public Canvas Diario2;
     public Canvas Diario3;
+    public Canvas RenderGris;
     public Text VarTexto;
     public Text VarTitulo;
     public Text Objetvios;
@@ -282,6 +283,7 @@ public class Trigger : MonoBehaviour
         {
             isOnText = true;
             diaologoSalir = true;
+            RenderGris.enabled = true;
 
         }
         if (col.gameObject.name == "Diario2")
