@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Trigger : MonoBehaviour
 {
@@ -266,18 +267,21 @@ public class Trigger : MonoBehaviour
         }
         if(entradaCloacas && Dialog == 22)
         {
+            print("asd2");
+            cloacas.SetBool("isOpen", true);
             VarTitulo.text = "Caleb";
             VarTexto.text = "Bien si eso es lo quieres iré hacia el laboratorio.";
             Texto.enabled = true;
             Caleb.bodyType = RigidbodyType2D.Static;
+            Dialog = 23;
             
         }
-        else if (entradaCloacas && Dialog == 22 && Input.GetKeyDown(KeyCode.Return))
+        else if (entradaCloacas && Dialog == 23 && Input.GetKeyDown(KeyCode.Return))
         {
             Texto.enabled = false;
             entradaCloacas = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
-            Dialog = 23;
+            Dialog = 24;
         }
     }
 
@@ -329,7 +333,10 @@ public class Trigger : MonoBehaviour
         if (col.gameObject.name == "EntradaCloacas" && Dialog == 22)
         {
             entradaCloacas = true;
-            cloacas.SetBool("isOpen", true);
+        }
+        if (col.gameObject.name == "CambiarCap" && Dialog == 24)
+        {
+            SceneManager.LoadScene(2);
         }
         //if (col.gameObject.name == "Puerta")
         //{
