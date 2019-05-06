@@ -20,6 +20,8 @@ public class ColisionesCaleb : MonoBehaviour {
     public SpriteRenderer SpriteRata;
     public SpriteRenderer SpriteHumano;
     Vector2 v2;
+    public Animator animator;
+    
     public float salto;
     public float speed;
     public float vida;
@@ -169,6 +171,10 @@ public class ColisionesCaleb : MonoBehaviour {
         {
             gameObject.transform.position = new Vector3(26, 109);
         }
+        if (collision.gameObject.name == "Volver1Piso")
+        {
+            gameObject.transform.position = new Vector3(-13, 101);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -204,7 +210,7 @@ public class ColisionesCaleb : MonoBehaviour {
                 Rata.enabled = false;
                 SpriteRata.enabled = false;
                 Humano.enabled = false;
-                SpriteHumano.enabled = false;
+                SpriteHumano.enabled = false;                
             }
         }
         else if (collision.gameObject.name == "Humano")

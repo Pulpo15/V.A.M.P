@@ -6,6 +6,7 @@ public class Huamno : MonoBehaviour {
 
     public GameObject Rata;
     public Canvas RenderGris;
+    public Animator animator;
 
     // Use this for initialization
     void Start () {
@@ -20,7 +21,7 @@ public class Huamno : MonoBehaviour {
     {
         if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
         {
-            RenderGris.enabled = false;
+            animator.SetBool("haSalido", false);
             Destroy(gameObject);
             Destroy(Rata);
         }

@@ -6,6 +6,7 @@ public class Rata : MonoBehaviour {
 
     public GameObject Humano;
     public Canvas RenderGris;
+    public Animator animator;
 
     // Use this for initialization
     void Start () {
@@ -21,7 +22,8 @@ public class Rata : MonoBehaviour {
     {
         if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
         {
-            RenderGris.enabled = false;
+            //RenderGris.enabled = false;
+            animator.SetBool("haSalido", false);
             Destroy(gameObject);
             Destroy(Humano);
         }

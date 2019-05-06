@@ -35,9 +35,11 @@ public class Trigger : MonoBehaviour
     private bool isOnLight;
     private bool diario3;
     private bool tlf;
+    private bool entradaCloacas;
     //public BoxCollider2D BoxPuerta1;
     //public Transform Puerta1;
-
+    public Animator animator;
+    public Animator cloacas;
 
     private void Start()
     {
@@ -262,6 +264,21 @@ public class Trigger : MonoBehaviour
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Dialog = 22;
         }
+        if(entradaCloacas && Dialog == 22)
+        {
+            VarTitulo.text = "Caleb";
+            VarTexto.text = "Bien si eso es lo quieres iré hacia el laboratorio.";
+            Texto.enabled = true;
+            Caleb.bodyType = RigidbodyType2D.Static;
+            
+        }
+        else if (entradaCloacas && Dialog == 22 && Input.GetKeyDown(KeyCode.Return))
+        {
+            Texto.enabled = false;
+            entradaCloacas = false;
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Dialog = 23;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -284,6 +301,7 @@ public class Trigger : MonoBehaviour
             isOnText = true;
             diaologoSalir = true;
             RenderGris.enabled = true;
+            animator.SetBool("haSalido", true);
 
         }
         if (col.gameObject.name == "Diario2")
@@ -307,6 +325,11 @@ public class Trigger : MonoBehaviour
         if (col.gameObject.name == "Telefono")
         {
             tlf = true;
+        }
+        if (col.gameObject.name == "EntradaCloacas" && Dialog == 22)
+        {
+            entradaCloacas = true;
+            cloacas.SetBool("isOpen", true);
         }
         //if (col.gameObject.name == "Puerta")
         //{
