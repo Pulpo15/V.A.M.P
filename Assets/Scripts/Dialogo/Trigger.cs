@@ -14,6 +14,7 @@ public class Trigger : MonoBehaviour
     public Canvas Diario2;
     public Canvas Diario3;
     public Canvas RenderGris;
+    public Canvas Transition;
     public Text VarTexto;
     public Text VarTitulo;
     public Text Objetvios;
@@ -41,6 +42,10 @@ public class Trigger : MonoBehaviour
     //public Transform Puerta1;
     public Animator animator;
     public Animator cloacas;
+    public Animator transicion;
+
+    public float timeBetweenScenes = 5;
+    public float timeBetweenScenesCur;
 
     private void Start()
     {
@@ -50,12 +55,20 @@ public class Trigger : MonoBehaviour
         timeToWaitCur = timeToWait;
         isOnText = true;
         Caleb.bodyType = RigidbodyType2D.Static;
+        timeBetweenScenesCur = timeBetweenScenes;
     }
 
     private void Update()
     {
         ShowText();
         print(Dialog);
+        timeBetweenScenesCur -= Time.deltaTime;
+        if (timeBetweenScenesCur <= 0 && Dialog == 24)
+        {
+            SceneManager.LoadScene(2);
+            transicion.SetBool("changeScene", false);
+        }
+
     }
 
     void ShowText()
@@ -256,6 +269,7 @@ public class Trigger : MonoBehaviour
         else if (tlf && Dialog == 20 && Input.GetKeyDown(KeyCode.Return))
         {
             VarTexto.text = "Si tanto quieres saber ve al laboratorio, supongo que ya sabes dónde se encuentra.";
+            Objetvios.text = "Accede a las cloacas";
             Dialog = 21;
         }
         else if (tlf && Dialog == 21 && Input.GetKeyDown(KeyCode.Return))
@@ -336,7 +350,9 @@ public class Trigger : MonoBehaviour
         }
         if (col.gameObject.name == "CambiarCap" && Dialog == 24)
         {
-            SceneManager.LoadScene(2);
+            //Transition.enabled = true;
+            transicion.SetBool("changeScene", true);
+            timeBetweenScenesCur = timeBetweenScenes;
         }
         //if (col.gameObject.name == "Puerta")
         //{

@@ -44,6 +44,7 @@ public class ColisionesCaleb : MonoBehaviour {
     private float timeToWait = 10.0f;
     private float timeToWaitCur;
     private int numEnter;
+    
 
     void Start() {
         dashTime = startDashTime;
