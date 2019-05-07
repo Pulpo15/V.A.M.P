@@ -281,7 +281,6 @@ public class Trigger : MonoBehaviour
         }
         if(entradaCloacas && Dialog == 22)
         {
-            print("asd2");
             cloacas.SetBool("isOpen", true);
             VarTitulo.text = "Caleb";
             VarTexto.text = "Bien si eso es lo quieres iré hacia el laboratorio.";
