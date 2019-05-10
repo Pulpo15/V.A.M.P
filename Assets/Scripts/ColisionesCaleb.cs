@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class ColisionesCaleb : MonoBehaviour {
 
@@ -21,7 +22,8 @@ public class ColisionesCaleb : MonoBehaviour {
     public SpriteRenderer SpriteHumano;
     Vector2 v2;
     public Animator animator;
-    
+    public Tilemap PuertaAlmacen2;
+
     public float salto;
     public float speed;
     public float vida;
@@ -38,12 +40,13 @@ public class ColisionesCaleb : MonoBehaviour {
     private float dashDeelay = 0;
     public static bool isDashing = false;
     public static float vidaRecibidaDeLamia;
-    public Slider hpBar;
+    //public Slider hpBar;
     public bool haveKey = false;
-
     private float timeToWait = 10.0f;
     private float timeToWaitCur;
     private int numEnter;
+    //private int scene;
+
     
 
     void Start() {
@@ -60,7 +63,7 @@ public class ColisionesCaleb : MonoBehaviour {
         vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         vidaParaLamia = vida;
         repuParaLamia = reputacion;
-        hpBar.value = vida;
+        //hpBar.value = vida;
         print(vida);
         CanWalk();
       }
@@ -192,6 +195,7 @@ public class ColisionesCaleb : MonoBehaviour {
             {
                 Puerta2.enabled = false;
                 SpritePuerta2.enabled = false;
+                PuertaAlmacen2.transform.position += new Vector3(0, 0, 20);
             }
         }
     }
@@ -205,26 +209,26 @@ public class ColisionesCaleb : MonoBehaviour {
         {
             if (Input.GetMouseButton(0))
             {
-                print("+10 de vida");
-                vida = vida + 10;
-                reputacion = 10;
-                Rata.enabled = false;
-                SpriteRata.enabled = false;
-                Humano.enabled = false;
-                SpriteHumano.enabled = false;                
+                //print("+10 de vida");
+                //vida = vida + 10;
+                //reputacion = 10;
+                //Rata.enabled = false;
+                //SpriteRata.enabled = false;
+                //Humano.enabled = false;
+                //SpriteHumano.enabled = false;                
             }
         }
         else if (collision.gameObject.name == "Humano")
         {
             if (Input.GetMouseButton(0))
             {
-                print("+25 de vida");
-                vida = vida + 25;
-                reputacion = 20;
-                Humano.enabled = false;
-                SpriteHumano.enabled = false;
-                Rata.enabled = false;
-                SpriteRata.enabled = false;
+                //print("+25 de vida");
+                //vida = vida + 25;
+                //reputacion = 20;
+                //Humano.enabled = false;
+                //SpriteHumano.enabled = false;
+                //Rata.enabled = false;
+                //SpriteRata.enabled = false;
             }
         }
         else if (collision.gameObject.name == "Lamia")

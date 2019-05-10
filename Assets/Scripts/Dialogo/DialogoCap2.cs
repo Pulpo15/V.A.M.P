@@ -14,6 +14,7 @@ public class DialogoCap2 : MonoBehaviour
     public Text VarTitulo;
     public Text Objetvios;
     public Rigidbody2D Caleb;
+    public Collider2D CientificoMuerto;
     //Variables
     private bool isOnText = true;
     private readonly float timeToWait = 5.0f;
@@ -21,6 +22,8 @@ public class DialogoCap2 : MonoBehaviour
     private int Dialog = 0;
     private readonly float timeBetweenScenes = 5;
     private float timeBetweenScenesCur;
+    //Boleans
+    private bool dialogoCientifico;
 
     private void Start()
     {
@@ -64,14 +67,47 @@ public class DialogoCap2 : MonoBehaviour
             Caleb.bodyType = RigidbodyType2D.Dynamic;
         }
 
+        if (dialogoCientifico && isOnText && Dialog == 3)
+        {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            VarTexto.text = "Las heridas de este científico son muy raras, dos perforaciones circulares. ¿Dónde he escuchado yo eso?";
+            CientificoMuerto.enabled = false;
+            Texto.enabled = true;
+            Dialog = 4;
+        }
+        else if (dialogoCientifico && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 4)
+        {
+            print("Text2");
+            VarTexto.text = "Parece que tiene una nota";
+            Dialog = 5;
+        }
+        else if (dialogoCientifico && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 5)
+        {
+            print("Text3");
+            VarTexto.text = "Esto se nos ha ido de las manos, ha creado un ser monstruoso que ni siquiera nosotros sabemos de que es capaz. Desde que comenzamos con las pruebas del suero, los sujetos empezaban a perder capacidad visual y la conciencia, tanto que se volvían agresivos. Si no la paramos la seguridad civil se verá en peligro.";
+            Dialog = 6;
+        }
+        else if(dialogoCientifico && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 6)
+        {
+            print("Text3");
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            Dialog = 7;
+            dialogoCientifico = false;
+            isOnText = false;
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-      
+      if (collision.gameObject.name == "CientificoMuerto")
+        {
+            isOnText = true;
+            dialogoCientifico = true;
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
 
     }

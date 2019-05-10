@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class Trigger : MonoBehaviour
 {
@@ -38,14 +39,13 @@ public class Trigger : MonoBehaviour
     private bool diario3;
     private bool tlf;
     private bool entradaCloacas;
-    //public BoxCollider2D BoxPuerta1;
-    //public Transform Puerta1;
     public Animator animator;
     public Animator cloacas;
     public Animator transicion;
-
-    public float timeBetweenScenes = 5;
+    public readonly float timeBetweenScenes = 5;
     public float timeBetweenScenesCur;
+    public Tilemap PuertaAlmacen1;
+
 
     private void Start()
     {
@@ -107,6 +107,7 @@ public class Trigger : MonoBehaviour
         }
         else if (Dialog == 4 && Input.GetKeyDown(KeyCode.Return) && isOnText)
         {
+            PuertaAlmacen1.transform.position += new Vector3(0,0,20);
             Diario1.enabled = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Dialog = 5;
