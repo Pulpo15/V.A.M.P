@@ -23,6 +23,7 @@ public class ColisionesCaleb : MonoBehaviour {
     Vector2 v2;
     public Animator animator;
     public Tilemap PuertaAlmacen2;
+    
 
     public float salto;
     public float speed;
