@@ -8,6 +8,7 @@ public class Huamno : MonoBehaviour {
     public GameObject Rata;
     public Canvas RenderGris;
     public Animator animator;
+    public Animator human;
     public Slider hpBar;
     private int vida = 10; 
 
@@ -27,8 +28,11 @@ public class Huamno : MonoBehaviour {
             animator.SetBool("haSalido", false);
             vida += 20;
             hpBar.value = vida;
+            human.SetBool("isDead", true);
+                      
             Destroy(gameObject);
             Destroy(Rata);
+            
         }
     }
 }
