@@ -17,7 +17,7 @@ public class DialogoCap2 : MonoBehaviour
     public Collider2D CientificoMuerto;
     //Variables
     private bool isOnText = true;
-    private readonly float timeToWait = 5.0f;
+    private readonly float timeToWait = 3.0f;
     private float timeToWaitCur;
     private int Dialog = 0;
     private readonly float timeBetweenScenes = 5;
@@ -39,7 +39,6 @@ public class DialogoCap2 : MonoBehaviour
     private void Update()
     {
         ShowText();
-        print(Dialog);
     }
 
     void ShowText()

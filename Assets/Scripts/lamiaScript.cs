@@ -1,123 +1,126 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class lamiaScript : MonoBehaviour {
 
-    public float speed;
+    public Slider hpBar;
     public Rigidbody2D Lamia;
     private Transform target;
-    private static bool isDashing;
-    private static float vidaCaleb = 20f;
-    public static float vidaParaCaleb;
-    private bool cantMove = false;
-    private bool checkMove = false;
-    public float startTimeToWait;
-    private float timeToWait = 0f;
     public Collider2D ColliderLamia;
     public SpriteRenderer SpriteRenderLamia;
+    public ColisionesCaleb Caleb;
+    public Reputacion Reputacion;
+
+    //Var Movement
+    public float speed;
+    private bool cantMove;
+    private bool checkMove;
+    //Var Time
+    public float startTimeToWait;
+    private float timeToWait = 0f;
+    //Var AttackTime
     public float startAttackDeelay;
     private float attackDeelay = 0f;
-    private static int repu;
+    //Var Fighting
     private int numCol = 0;
+    private int numHit;
     
-    // Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         timeToWait = startTimeToWait;
-        
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        //cuando caleb toque algo, lamia persigue
-        isDashing = ColisionesCaleb.isDashing;
-        repu = ColisionesCaleb.repuParaLamia;
-        attackDeelay -= Time.deltaTime;
-        vidaParaCaleb = vidaCaleb;
-        print("Repu en lamia" + repu);
         Perseguir();
+        Timers();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-
+    private void OnTriggerEnter2D(Collider2D collider) {
         ColisionesCaleb player = collider.GetComponent<ColisionesCaleb>();
         if (player)
             numCol++;
-        print(numCol);
-
+        if (collider.gameObject.name == "Caleb") {
+            if (numCol == 3) {
+                if (Caleb.isDashing) {
+                    timeToWait = startTimeToWait;
+                    transform.position = Vector2.MoveTowards(transform.position, target.position, 0);
+                    Lamia.bodyType = RigidbodyType2D.Static;
+                    cantMove = true;
+                    checkMove = false;
+                    numHit++;
+                }
+                if (numHit == 5) {
+                    ColliderLamia.enabled = false;
+                    SpriteRenderLamia.enabled = false;
+                }
+                else if (attackDeelay <= 0f && Caleb.isDashing == false && cantMove == false) {
+                    Lamia.bodyType = RigidbodyType2D.Static;
+                    transform.position = Vector2.MoveTowards(transform.position, target.position, 0);
+                    hpBar.value -= 15f;
+                    attackDeelay = startAttackDeelay;
+                }
+            }
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
-    {
+    private void OnTriggerExit2D(Collider2D collider) {
         ColisionesCaleb player = collider.GetComponent<ColisionesCaleb>();
         if (player)
             numCol--;
-        print(numCol);
-    }
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "Caleb" && repu == 10 && numCol == 2 && cantMove == false|| collider.gameObject.name == "Caleb" && repu == 20 && numCol == 2 && cantMove == false)
-        {
-            checkMove = true;
-            print("Rata");
-        }
-        if (collider.gameObject.name == "Caleb" && repu == 20 && numCol == 1 && cantMove == false)
-        {
-            checkMove = true;
-            print("Humano");
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Caleb")
-        {
-            if (isDashing == true)
-            {
-                print("CanDash");
-                transform.position = Vector2.MoveTowards(transform.position, target.position, 0);
-                Lamia.bodyType = RigidbodyType2D.Static;
-                cantMove = true;
+        if (!cantMove) {
+            if (Reputacion.reputation == 10 && numCol == 1)
                 checkMove = false;
+            //Rata
+            if (Reputacion.reputation == 20 && numCol == 0)
+                checkMove = false;
+            //Humano
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collider) {
+        if (collider.gameObject.name == "Caleb") {
+            if (!cantMove) {
+                print("asd");
+                if (Reputacion.reputation == 10 && numCol == 2)
+                    checkMove = true;
+                    //Rata
+                if (Reputacion.reputation == 20 && numCol == 1 || Reputacion.reputation == 20 && numCol == 2)
+                    checkMove = true;
+                    //Humano
             }
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Caleb")
-        {
-            vidaCaleb = ColisionesCaleb.vidaParaLamia;
-            if (Input.GetMouseButton(0) && cantMove == true)
-            {
-                ColliderLamia.enabled = false;
-                SpriteRenderLamia.enabled = false;
-            }
-            else if (attackDeelay <= 0f && isDashing == false && cantMove == false)
-            {
-                Lamia.bodyType = RigidbodyType2D.Static;
-                transform.position = Vector2.MoveTowards(transform.position, target.position, 0);
-                print("Ataque");
-                vidaCaleb = vidaCaleb - 15f;
-                attackDeelay = startAttackDeelay;
-            }
-        }
-    }
-    void Perseguir ()
-    {
+    void Timers() {
+        attackDeelay -= Time.deltaTime;
         timeToWait -= Time.deltaTime;
+    }
+
+    void Perseguir()
+    {
         if (checkMove == true)
         {
-
+            Lamia.bodyType = RigidbodyType2D.Dynamic;
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
         else if (timeToWait <= 0)
         {
             cantMove = false;
-            timeToWait = startTimeToWait;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name == "Caleb") {
+
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.name == "Caleb") {
+          
+        }
+    }
+
+
 }

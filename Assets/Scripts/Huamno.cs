@@ -10,21 +10,14 @@ public class Huamno : MonoBehaviour {
     public Animator animator;
     public Animator human;
     public Slider hpBar;
-    private int vida = 10; 
+    private int vida;
 
-    // Use this for initialization
     void Start () {
         hpBar.value = vida;
     }
 	
-	// Update is called once per frame
-	void Update () {
-        print(vida);
-	}
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return))
-        {
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return)) {
             animator.SetBool("haSalido", false);
             vida += 20;
             hpBar.value = vida;

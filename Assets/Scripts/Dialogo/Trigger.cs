@@ -21,7 +21,7 @@ public class Trigger : MonoBehaviour
     public Text Objetvios;
     public bool isOnText = true;
     public bool textTime = false;
-    public float timeToWait = 5.0f;
+    private readonly float timeToWait = 3.0f;
     private float timeToWaitCur;
     public int Dialog = 0;
     public Rigidbody2D Caleb;
@@ -61,11 +61,10 @@ public class Trigger : MonoBehaviour
     private void Update()
     {
         ShowText();
-        print(Dialog);
         timeBetweenScenesCur -= Time.deltaTime;
         if (timeBetweenScenesCur <= 0 && Dialog == 24)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
             transicion.SetBool("changeScene", false);
         }
 

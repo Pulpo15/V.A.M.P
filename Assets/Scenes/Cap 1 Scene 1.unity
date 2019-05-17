@@ -8989,7 +8989,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884180990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1853893676}
@@ -56468,7 +56468,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1252157640145842, guid: 654c0f4ac3cb6584da06d7ce42ebd806, type: 2}
       propertyPath: m_Name
-      value: HD Human
+      value: Humano
       objectReference: {fileID: 0}
     - target: {fileID: 114487221741415148, guid: 654c0f4ac3cb6584da06d7ce42ebd806,
         type: 2}
@@ -56898,7 +56898,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180169730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1853893676}
@@ -57784,7 +57784,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.024327189, y: 0.21868385}
+  m_Offset: {x: 0.019040838, y: 0.21868385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -57795,7 +57795,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26369882, y: 0.4668254}
+  m_Size: {x: 0.25312614, y: 0.4668254}
   m_EdgeRadius: 0
 --- !u!212 &1319191221
 SpriteRenderer:
@@ -58694,7 +58694,6 @@ MonoBehaviour:
   SpritePuerta1: {fileID: 2131816794}
   SpriteRata: {fileID: 0}
   SpriteHumano: {fileID: 0}
-  animator: {fileID: 1806742258}
   PuertaAlmacen2: {fileID: 1180169733}
   salto: 0
   speed: 2.5
@@ -59183,7 +59182,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1962921541349396, guid: c30b6685400414248ab121825b4776f6, type: 2}
       propertyPath: m_Name
-      value: Rabbit 1
+      value: Rata
       objectReference: {fileID: 0}
     - target: {fileID: 114789328701784456, guid: c30b6685400414248ab121825b4776f6,
         type: 2}
