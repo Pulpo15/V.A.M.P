@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour {
 
-    private Transform bar;
+    public Slider HpBar;
+    public PasarVariables PasarVariable;
 
-	// Use this for initialization
-	void Start () {
-        bar = transform.Find("Bar");
+
+    // Use this for initialization
+    void Start () {
+        PasarVariable = GameObject.FindGameObjectWithTag("Variables").GetComponent<PasarVariables>();
+        HpBar.value = PasarVariable.Vida;
 	}
-	
-    public void SetSize(float sizeNormalized)
-    {
-        bar.localScale = new Vector3(sizeNormalized, 1f);
-    }
 
 	// Update is called once per frame
 	void Update () {

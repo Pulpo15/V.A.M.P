@@ -108,14 +108,14 @@ public class Cubo : MonoBehaviour {
             //    gameObject.transform.position = new Vector3(Caleb.position.x - 1.13f, Caleb.position.y + 0.5f);
             //    gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f) && !isTouching[2])
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.1f) && !isTouching[2] || Caleb.transform.eulerAngles == new Vector3(0, 180, 0.1f) && !isTouching[2])
             {
                 //Arriba
                 isTouching[2] = true;
             //    gameObject.transform.position = new Vector3(Caleb.position.x, Caleb.position.y + 2.2643f);
             //    gameObject.transform.eulerAngles = new Vector3(Caleb.transform.eulerAngles.x, Caleb.transform.eulerAngles.y, Caleb.transform.eulerAngles.z);
             }
-            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f) && !isTouching[3])
+            else if (Caleb.transform.eulerAngles == new Vector3(0, 0, 0.2f) && !isTouching[3] || Caleb.transform.eulerAngles == new Vector3(0, 180, 0.2f) && !isTouching[3])
             {
                 //Abajo
                 isTouching[3] = true;

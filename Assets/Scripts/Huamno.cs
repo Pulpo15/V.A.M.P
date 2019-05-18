@@ -11,19 +11,20 @@ public class Huamno : MonoBehaviour {
     public Animator human;
     public Slider hpBar;
     private int vida;
+    int num;
 
     void Start () {
         hpBar.value = vida;
     }
 	
     private void OnTriggerStay2D(Collider2D collision) {
-        if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return)) {
+        if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return) && num == 0) {
             animator.SetBool("haSalido", false);
             vida += 20;
             hpBar.value = vida;
             human.SetBool("isDead", true);
-                      
-            Destroy(gameObject);
+            num++;                      
+            //Destroy(gameObject);
             Destroy(Rata);
             
         }

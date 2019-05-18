@@ -8743,7 +8743,6 @@ MonoBehaviour:
   Objetvios: {fileID: 0}
   isOnText: 0
   textTime: 0
-  timeToWait: 10
   Dialog: 0
   Caleb: {fileID: 0}
   SpriteDiario: {fileID: 0}
@@ -58512,6 +58511,7 @@ GameObject:
   - component: {fileID: 2011398885}
   - component: {fileID: 1526820039}
   - component: {fileID: 1526820038}
+  - component: {fileID: 1526820042}
   - component: {fileID: 1526820037}
   - component: {fileID: 1526820036}
   m_Layer: 0
@@ -58527,7 +58527,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526820035}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c6d849b7b3460dd4098376547f86017f, type: 3}
@@ -58622,7 +58622,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526820035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae9eb2e27d0bf954788634b1b8713334, type: 3}
   m_Name: 
@@ -58652,7 +58652,6 @@ MonoBehaviour:
   Objetvios: {fileID: 1817282422}
   isOnText: 0
   textTime: 0
-  timeToWait: 10
   Dialog: 0
   Caleb: {fileID: 2011398885}
   SpriteDiario: {fileID: 856167365}
@@ -58695,12 +58694,14 @@ MonoBehaviour:
   SpriteRata: {fileID: 0}
   SpriteHumano: {fileID: 0}
   PuertaAlmacen2: {fileID: 1180169733}
+  hpBar: {fileID: 0}
   salto: 0
   speed: 2.5
   vida: 20
   dashSpeed: 50
   startDashTime: 0.1
   startDashDeelay: 2
+  isDashing: 0
   haveKey: 0
 --- !u!70 &1526820040
 CapsuleCollider2D:
@@ -58737,6 +58738,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1526820042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526820035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16082534a253dd45a3d30157e068dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasarVariable: {fileID: 0}
+  reputation: 0
 --- !u!1001 &1527681335
 Prefab:
   m_ObjectHideFlags: 0
@@ -59141,6 +59155,51 @@ Transform:
   m_PrefabParentObject: {fileID: 4265683896763222, guid: a43a389574aa37648a3e59cac79d8dc8,
     type: 2}
   m_PrefabInternal: {fileID: 475171227}
+--- !u!1 &1605802788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1605802790}
+  - component: {fileID: 1605802789}
+  m_Layer: 0
+  m_Name: Variables
+  m_TagString: Variables
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1605802789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1605802788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a617b7f92447b46b99c9c05b296c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trigger: {fileID: 1526820038}
+  Reputacion: {fileID: 1526820042}
+  HpBar: {fileID: 2085004513}
+  Repu: 0
+  Vida: 0
+--- !u!4 &1605802790
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1605802788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.609968, y: 67.09556, z: 0.34426117}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1619964567
 Prefab:
   m_ObjectHideFlags: 0
@@ -61809,6 +61868,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4265683896763222, guid: a43a389574aa37648a3e59cac79d8dc8,
     type: 2}
   m_PrefabInternal: {fileID: 309498363}
+--- !u!1 &1760293796 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1643363886966608, guid: fb4e748757a0a3c49abf1e491e53f462,
+    type: 2}
+  m_PrefabInternal: {fileID: 543213163}
+--- !u!114 &1760293798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760293796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d83676866974d4db3e92f921740620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HpBar: {fileID: 2085004513}
+  PasarVariable: {fileID: 1605802789}
 --- !u!1001 &1777277013
 Prefab:
   m_ObjectHideFlags: 0

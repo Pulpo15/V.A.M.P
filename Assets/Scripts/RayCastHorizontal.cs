@@ -2,39 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RayCast : MonoBehaviour {
-
+public class RayCastHorizontal : MonoBehaviour {
     Rigidbody2D RCRB;
     public Collider2D Luz;
     public SpriteRenderer SRLuz;
 
-    void Start () {
+    void Start()
+    {
         RCRB = GetComponent<Rigidbody2D>();
-	}
+    }
 
-    void Update () {
+    void Update()
+    {
 
-	}
-    private void OnCollisionEnter2D(Collision2D collision) {
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.name == "Caleb") { }
-        else if (collision.gameObject.name == "Cubo") {
+        else if (collision.gameObject.name == "Cubo")
+        {
             //Luz.enabled = false;
             //SRLuz.enabled = false;
             //Luz.transform.localScale -= new Vector3(0.1f, 0, 0);
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.name == "Cubo") {
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Cubo")
+        {
             //Luz.enabled = false;
             //SRLuz.enabled = false;
-            if (Luz.transform.localScale.x > 0.1f) {
-                Luz.transform.localScale -= new Vector3(0.01f, 0, 0);
-                Luz.transform.position -= new Vector3(0.01f, 0, 0);
+            if (Luz.transform.localScale.x > 0.1f)
+            {
                 //Luz.transform.localScale -= new Vector3(0.01f, 0, 0);
-                //Luz.transform.position += new Vector3(0, 0.005f, 0);
+                //Luz.transform.position -= new Vector3(0.01f, 0, 0);
+                Luz.transform.localScale -= new Vector3(0.01f, 0, 0);
+                Luz.transform.position += new Vector3(0, 0.005f, 0);
             }
-            else {
+            else
+            {
                 Luz.isTrigger = enabled;
                 SRLuz.enabled = false;
             }
@@ -51,4 +58,5 @@ public class RayCast : MonoBehaviour {
             //Luz.transform.position += new Vector3(0.01f, 0, 0);
         }
     }
+
 }
