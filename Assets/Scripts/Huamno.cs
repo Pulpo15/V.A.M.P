@@ -14,7 +14,7 @@ public class Huamno : MonoBehaviour {
     int num;
 
     void Start () {
-        hpBar.value = vida;
+        //hpBar.value = vida;
     }
 	
     private void OnTriggerStay2D(Collider2D collision) {

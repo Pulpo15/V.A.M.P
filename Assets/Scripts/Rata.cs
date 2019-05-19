@@ -12,7 +12,7 @@ public class Rata : MonoBehaviour {
     private int vida;
 
     void Start () {
-        hpBar.value = vida;
+        //hpBar.value = vida;
     }
 
     private void OnTriggerStay2D(Collider2D collision) {

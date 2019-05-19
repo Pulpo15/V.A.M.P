@@ -30,6 +30,8 @@ public class ColisionesCaleb : MonoBehaviour {
 
     public Slider hpBar;
 
+    public Animator stairsFade;
+
     //Var Movimiento
     public float salto;
     public float speed;
@@ -68,8 +70,8 @@ public class ColisionesCaleb : MonoBehaviour {
         Moving();
         Dash();
         Vida();
-        ExitToMenu();
         CanWalk();
+        GoToMenu();
         //vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         //vidaParaLamia = vida;
         //repuParaLamia = reputacion;
@@ -156,10 +158,17 @@ public class ColisionesCaleb : MonoBehaviour {
             Puerta1.enabled = false;
             SpritePuerta1.enabled = false;
         }
-        if (collision.gameObject.name == "Acceder2Piso") 
+        if (collision.gameObject.name == "Acceder2Piso")
+        {
             gameObject.transform.position = new Vector3(26, 109);
+            stairsFade.SetBool("changeStair", true);
+        }
         if (collision.gameObject.name == "Volver1Piso")
+        {
             gameObject.transform.position = new Vector3(-13, 101);
+            stairsFade.SetBool("changeStair", false);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -264,8 +273,11 @@ public class ColisionesCaleb : MonoBehaviour {
         Caleb.velocity = new Vector3(Caleb.velocity.x, mV * speed);
     }
 
-    void ExitToMenu() {
+    public void GoToMenu()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(0);
+
     }
+
 }

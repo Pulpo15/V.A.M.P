@@ -45,6 +45,8 @@ public class Trigger : MonoBehaviour
     public readonly float timeBetweenScenes = 5;
     public float timeBetweenScenesCur;
     public Tilemap PuertaAlmacen1;
+    public SpriteRenderer caja;
+    public BoxCollider2D boxCollider2D;
 
 
     private void Start()
@@ -62,11 +64,11 @@ public class Trigger : MonoBehaviour
     {
         ShowText();
         timeBetweenScenesCur -= Time.deltaTime;
-        if (timeBetweenScenesCur <= 0 && Dialog == 24)
-        {
-            SceneManager.LoadScene(3);
-            transicion.SetBool("changeScene", false);
-        }
+        //if (timeBetweenScenesCur <= 0 && Dialog == 24)
+        //{
+        //    SceneManager.LoadScene(3);
+        //    transicion.SetBool("changeScene", false);
+        //}
 
     }
 
@@ -251,6 +253,8 @@ public class Trigger : MonoBehaviour
             Texto.enabled = true;
             VarTexto.text = "Tengo que encontrar algo para bloquear la luz";
             Caleb.bodyType = RigidbodyType2D.Static;
+            caja.enabled = true;
+            boxCollider2D.enabled = true;
         }
         if (isOnText && Dialog == 18 && Input.GetKeyDown(KeyCode.Return) && isOnLight)
         {
