@@ -68,7 +68,6 @@ public class ColisionesCaleb : MonoBehaviour {
         Moving();
         Dash();
         Vida();
-        ExitToMenu();
         CanWalk();
         //vidaRecibidaDeLamia = lamiaScript.vidaParaCaleb;
         //vidaParaLamia = vida;
@@ -262,10 +261,5 @@ public class ColisionesCaleb : MonoBehaviour {
         float mV = speed * Input.GetAxis("Vertical");
         Caleb.velocity = new Vector3(mH * speed, Caleb.velocity.y);
         Caleb.velocity = new Vector3(Caleb.velocity.x, mV * speed);
-    }
-
-    void ExitToMenu() {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene(0);
     }
 }
