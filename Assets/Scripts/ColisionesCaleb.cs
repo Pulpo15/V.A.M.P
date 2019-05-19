@@ -272,7 +272,7 @@ public class ColisionesCaleb : MonoBehaviour {
         Caleb.velocity = new Vector3(mH * speed, Caleb.velocity.y);
         Caleb.velocity = new Vector3(Caleb.velocity.x, mV * speed);
     }
-<<<<<<< HEAD
+
 
     public void GoToMenu()
     {
@@ -281,6 +281,5 @@ public class ColisionesCaleb : MonoBehaviour {
 
     }
 
-=======
->>>>>>> master
+
 }
