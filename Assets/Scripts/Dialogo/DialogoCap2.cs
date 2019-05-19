@@ -10,12 +10,25 @@ public class DialogoCap2 : MonoBehaviour
     //GameObjects
     public Canvas Texto;
     public Canvas CanvasObjetivos;
+    public Canvas DiarioLamia;
+
     public Text VarTexto;
     public Text VarTitulo;
     public Text Objetvios;
+
     public Rigidbody2D Caleb;
+
     public Collider2D CientificoMuerto;
+    public Collider2D ColliderDiarioLamia;
+    public Collider2D TriggerPuertaSalaContro;
+    public Collider2D TriggerTarjetaSalaControl;
+    public Collider2D ColCajaGas;
+
     public lamiaScript Lamia;
+
+    public SpriteRenderer SpriteDiarioLamia;
+    public SpriteRenderer SpriteTarjetaSalaControl;
+    public SpriteRenderer SpriteCajaGas;
     
     //Var Time
     private readonly float timeToWait = 3.0f;
@@ -27,10 +40,14 @@ public class DialogoCap2 : MonoBehaviour
     private int Dialog = 0;
     
     //Boleans
-    public bool isOnText = true;
+    public bool isOnText;
     private bool dialogoCientifico;
-    public bool dialogoGas;
+    private bool dialogoGas;
     private bool dialogoLamia;
+    private bool dialogoDiarioLamia;
+    private bool dialogoPuertaSalaControl;
+    private bool keySalaControl;
+    private bool gasOut;
 
     private void Start() {
         Dialog = 0;
@@ -49,6 +66,7 @@ public class DialogoCap2 : MonoBehaviour
 
     void ShowText() {
         timeToWaitCur -= Time.deltaTime;
+        //Dialogo Inicial
         if (isOnText && Dialog == 0 && timeToWaitCur <= 0) {
             Caleb.bodyType = RigidbodyType2D.Static;
             VarTexto.text = "*Bleh*";
@@ -67,6 +85,8 @@ public class DialogoCap2 : MonoBehaviour
             Dialog = 3;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
         }
+        //Dialogo Inicial
+        //Dialogo Cientifico Muerto
         if (dialogoCientifico && isOnText && Dialog == 3) {
             Caleb.bodyType = RigidbodyType2D.Static;
             VarTexto.text = "Las heridas de este científico son muy raras, dos perforaciones circulares. ¿Dónde he escuchado yo eso?";
@@ -99,77 +119,140 @@ public class DialogoCap2 : MonoBehaviour
             VarTitulo.text = "Caleb";
             VarTexto.text = "Esto si que es raro, este científico quería sacar a la luz algo que no se tenía que saber. A saber que le ha pasado. ¿Qué o quién puede causar estas heridas?";
             Dialog = 10;
+        }
+        else if (dialogoCientifico && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 10) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             dialogoCientifico = false;
             isOnText = false;
             Texto.enabled = false;
+            Dialog = 11;
         }
-
-        if (dialogoGas && isOnText && Dialog == 10) {
+        //Dialogo Cientifico Muerto
+        if (dialogoGas && isOnText && Dialog == 11) {
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             VarTexto.text = "En el diario del científico decía que las tuberías estaban en mal estado y que debería traer algo para bloquearlas, seguro que por aquí encuentro algo para bloquearlas.";
-            Dialog = 11;
+            Dialog = 12;
         }
-        if (dialogoGas && isOnText && Dialog == 11 && Input.GetKeyDown(KeyCode.Return)) {
+        if (dialogoGas && isOnText && Dialog == 12 && Input.GetKeyDown(KeyCode.Return)) {
             Objetvios.text = "Busca algo para bloquear el gas tóxico";
+            ColCajaGas.enabled = true;
+            SpriteCajaGas.enabled = true;
             Texto.enabled = false;
             dialogoGas = false;
             isOnText = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
-            Dialog = 12;
+            Dialog = 13;
         }
-
-        if (dialogoLamia && isOnText && Dialog == 12) {
+        if (gasOut)
+        {
+            Objetvios.text = "Encuentra una manera de llegar al laboratorio";
+            gasOut = false;
+        }
+        if (dialogoLamia && isOnText && Dialog == 13) {
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             VarTexto.text = "Algo se acerca";
-            Dialog = 13;
-        }
-        if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 13) {
-            VarTexto.text = "*Usa espacio para usar el Dash*";
             Dialog = 14;
         }
-        else if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 14) {
-            VarTexto.text = "*Embiste 2 veces al Lamia usando el Dash para acabar con el*";
+        if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 14) {
+            VarTexto.text = "*Usa espacio para usar el Dash*";
             Dialog = 15;
         }
         else if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 15) {
+            VarTexto.text = "*Embiste 2 veces al Lamia usando el Dash para acabar con el*";
+            Dialog = 16;
+        }
+        else if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 16) {
             Objetvios.text = "Acaba con el Lamia";
             Texto.enabled = false;
             dialogoLamia = false;
             isOnText = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
-            Dialog = 16;
+            Dialog = 17;
         }
-        if (Lamia.isDead && Dialog == 16) {
+        if (Lamia.isDead && Dialog == 17) {
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
-            Dialog = 17;
+            Dialog = 18;
             VarTexto.text = "Que narices era eso, seguro que está relacionado con la muerte del científico y los ataques";
         }
-        else if (Lamia.isDead && Dialog == 17 &&Input.GetKeyDown(KeyCode.Return)) {
+        else if (Lamia.isDead && Dialog == 18 && Input.GetKeyDown(KeyCode.Return)) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
             Lamia.isDead = false;
-            Dialog = 18;
+            Dialog = 19;
         }
+        if (dialogoDiarioLamia && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            DiarioLamia.enabled = true;
+            SpriteDiarioLamia.enabled = false;
+            ColliderDiarioLamia.enabled = false;
+        }
+        if (dialogoDiarioLamia && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            DiarioLamia.enabled = false;
+            dialogoDiarioLamia = false;
+            isOnText = false;
+        }
+        if (dialogoPuertaSalaControl && !keySalaControl && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Parece que necesito una tarjeta para acceder a la sala de control";
+            Objetvios.text = "Consigue acceder a la sala de Control";
+            TriggerPuertaSalaContro.enabled = false;
+        }
+        if (dialogoPuertaSalaControl && !keySalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            dialogoPuertaSalaControl = false;
+            isOnText = true;
+        }
+        if (keySalaControl && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Parece la tarjeta para acceder a la sala de control";
+            TriggerTarjetaSalaControl.enabled = false;
+            SpriteTarjetaSalaControl.enabled = false;
+        }
+        if (keySalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Objetvios.text = "Accede a la sala de control";
+            Texto.enabled = false;
+            isOnText = false;
+        }
+
 
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-      if (collision.gameObject.name == "CientificoMuerto") {
+        if (collision.gameObject.name == "CientificoMuerto") {
             isOnText = true;
             dialogoCientifico = true;
-      }
-      if (collision.gameObject.name == "Gas") {
+        }
+        if (collision.gameObject.name == "Gas") {
             dialogoGas = true;
             isOnText = true;
-      }
-      if (collision.gameObject.name == "TriggerDiaologo") {
+        }
+        if (collision.gameObject.name == "TriggerDiaologo") {
             dialogoLamia = true;
             isOnText = true;
-      }
+        }
+        if (collision.gameObject.name == "DiarioLamia") {
+            dialogoDiarioLamia = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "PuertaSalaControl") {
+            dialogoPuertaSalaControl = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "TarjetaSalaControl") {
+            keySalaControl = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "TriggerGasOut") {
+            gasOut = true;
+        }
     }
 
 
