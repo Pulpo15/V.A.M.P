@@ -16,19 +16,24 @@ public class DialogoCap2 : MonoBehaviour
     public Text VarTitulo;
     public Text Objetvios;
 
+    public Animator FadeVida;
+
     public Rigidbody2D Caleb;
 
     public Collider2D CientificoMuerto;
     public Collider2D ColliderDiarioLamia;
     public Collider2D TriggerPuertaSalaContro;
+    public Collider2D ColPuertaSalaControl;
     public Collider2D TriggerTarjetaSalaControl;
     public Collider2D ColCajaGas;
+    public Collider2D TriggerHumanityOff;
 
     public lamiaScript Lamia;
 
     public SpriteRenderer SpriteDiarioLamia;
     public SpriteRenderer SpriteTarjetaSalaControl;
     public SpriteRenderer SpriteCajaGas;
+    public SpriteRenderer SpritePuertaSalaControl;
     
     //Var Time
     private readonly float timeToWait = 3.0f;
@@ -45,9 +50,14 @@ public class DialogoCap2 : MonoBehaviour
     private bool dialogoGas;
     private bool dialogoLamia;
     private bool dialogoDiarioLamia;
+    private bool dialogoPuertaSalaControlCol;
     private bool dialogoPuertaSalaControl;
     private bool keySalaControl;
+    private bool textKey;
     private bool gasOut;
+    private bool dialogoBarrotes;
+    private bool humanityOff;
+    private bool dialogoSalaControl;
 
     private void Start() {
         Dialog = 0;
@@ -206,23 +216,76 @@ public class DialogoCap2 : MonoBehaviour
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
             dialogoPuertaSalaControl = false;
-            isOnText = true;
+            isOnText = false;
         }
-        if (keySalaControl && isOnText) {
+        if (dialogoPuertaSalaControlCol && keySalaControl && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Genial!!";
+            Objetvios.text = "Accede al terminal para desactivar el gas";
+            TriggerPuertaSalaContro.enabled = false;
+            ColPuertaSalaControl.enabled = false;
+            SpritePuertaSalaControl.enabled = false;
+
+        }
+        if (dialogoPuertaSalaControlCol && keySalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            dialogoPuertaSalaControl = false;
+            isOnText = false;
+            keySalaControl = false;
+        }
+        if (keySalaControl && isOnText && textKey) {
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             VarTexto.text = "Parece la tarjeta para acceder a la sala de control";
             TriggerTarjetaSalaControl.enabled = false;
             SpriteTarjetaSalaControl.enabled = false;
         }
-        if (keySalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+        if (keySalaControl && isOnText && textKey && Input.GetKeyDown(KeyCode.Return)) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Objetvios.text = "Accede a la sala de control";
             Texto.enabled = false;
             isOnText = false;
+            textKey = false;
         }
-
-
+        if (isOnText && dialogoBarrotes) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Estos barrotes estan conectados a un sistema, seguro que los puedo desactivar des de la sala de control";
+        }
+        else if (isOnText && dialogoBarrotes && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            Objetvios.text = "Desactiva los barrotes";
+            isOnText = false;
+            dialogoBarrotes = false;
+        }
+        if (humanityOff && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Otra vez no";
+            FadeVida.SetBool("haSalido", true);
+            TriggerHumanityOff.enabled = false;
+        }
+        if (humanityOff && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            Objetvios.text = "Aliméntate";
+            isOnText = false;
+        }
+        if (dialogoSalaControl && isOnText) {
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Parece que he activado algo en el otro camino";
+        }
+        else if (dialogoSalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            Objetvios.text = "Consigue la llave para cerrar el gas";
+            dialogoSalaControl = false;
+            isOnText = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -249,16 +312,31 @@ public class DialogoCap2 : MonoBehaviour
         if (collision.gameObject.name == "TarjetaSalaControl") {
             keySalaControl = true;
             isOnText = true;
+            textKey = true;
         }
         if (collision.gameObject.name == "TriggerGasOut") {
             gasOut = true;
         }
+        if (collision.gameObject.name == "TriggerSalaControl") {
+            humanityOff = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "Control") {
+            dialogoSalaControl = true;
+            isOnText = true;
+        }
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name == "PuertaSalaControl") {
+            dialogoPuertaSalaControlCol = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "Barrotes") {
+            dialogoBarrotes = true;
+            isOnText = true;
+        }
     }
 
 }
