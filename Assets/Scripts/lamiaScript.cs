@@ -12,6 +12,7 @@ public class lamiaScript : MonoBehaviour {
     public Collider2D ColliderLamia2;
     public Collider2D ColliderLamia3;
     public Collider2D ColliderLamia4;
+    public Collider2D TriggerLamia;
     //public SpriteRenderer SpriteRenderLamia;
     public ColisionesCaleb Caleb;
     public Reputacion Reputacion;
@@ -77,6 +78,7 @@ public class lamiaScript : MonoBehaviour {
                     ColliderLamia2.enabled = false;
                     ColliderLamia3.enabled = false;
                     ColliderLamia4.enabled = false;
+                    TriggerLamia.enabled = false;
                     //SpriteRenderLamia.enabled = false;
                     isDead = true;
                     cantMove = true;

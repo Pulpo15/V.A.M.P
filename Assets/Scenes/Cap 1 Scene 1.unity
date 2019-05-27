@@ -6907,6 +6907,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1040185245408596, guid: 16526175fbaa817428552b7575814f96,
     type: 2}
   m_PrefabInternal: {fileID: 1619964567}
+--- !u!114 &456469941 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114737130810760420, guid: 16526175fbaa817428552b7575814f96,
+    type: 2}
+  m_PrefabInternal: {fileID: 1619964567}
+  m_Script: {fileID: 11500000, guid: 58531a2d9a1452e41a3a7c74ec374424, type: 3}
+--- !u!95 &456469944 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95647824097432126, guid: 16526175fbaa817428552b7575814f96,
+    type: 2}
+  m_PrefabInternal: {fileID: 1619964567}
 --- !u!1 &461854759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7732,6 +7743,10 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1643363886966608, guid: fb4e748757a0a3c49abf1e491e53f462, type: 2}
+      propertyPath: m_TagString
+      value: Slider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4e748757a0a3c49abf1e491e53f462, type: 2}
@@ -58757,6 +58772,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1496709601551798, guid: 654c0f4ac3cb6584da06d7ce42ebd806,
     type: 2}
   m_PrefabInternal: {fileID: 1067952257}
+--- !u!114 &1512612341 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114009624051545656, guid: 654c0f4ac3cb6584da06d7ce42ebd806,
+    type: 2}
+  m_PrefabInternal: {fileID: 1067952257}
+  m_Script: {fileID: 11500000, guid: e5a71dbc97aed9a4e9507aa0727ccea9, type: 3}
 --- !u!1 &1526820035
 GameObject:
   m_ObjectHideFlags: 0
@@ -59028,6 +59049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pasarVariable: {fileID: 1605802789}
+  Humano: {fileID: 1512612341}
+  Rata: {fileID: 456469941}
   hpBar: {fileID: 2085004513}
 --- !u!114 &1526820044
 MonoBehaviour:
@@ -59474,8 +59497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1526820038}
-  Reputacion: {fileID: 1526820042}
-  HpBar: {fileID: 2085004513}
+  Reputacion: {fileID: 0}
+  HpBar: {fileID: 0}
   Repu: 0
   Vida: 0
 --- !u!4 &1605802790
@@ -59558,6 +59581,21 @@ Prefab:
     - target: {fileID: 1040185245408596, guid: 16526175fbaa817428552b7575814f96, type: 2}
       propertyPath: m_Name
       value: Rata
+      objectReference: {fileID: 0}
+    - target: {fileID: 114737130810760420, guid: 16526175fbaa817428552b7575814f96,
+        type: 2}
+      propertyPath: rata
+      value: 
+      objectReference: {fileID: 456469944}
+    - target: {fileID: 70366952307693908, guid: 16526175fbaa817428552b7575814f96,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 70366952307693908, guid: 16526175fbaa817428552b7575814f96,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16526175fbaa817428552b7575814f96, type: 2}

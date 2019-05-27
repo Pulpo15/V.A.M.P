@@ -32,6 +32,7 @@ public class DialogoCap2 : MonoBehaviour
     public Collider2D TriggerBarrotes;
     public Collider2D TriggerDialogoKeyGas;
     public Collider2D ColliderGasSecundario;
+    public Collider2D TriggerDialogoLamia;
 
     public lamiaScript Lamia;
 
@@ -42,13 +43,13 @@ public class DialogoCap2 : MonoBehaviour
     public SpriteRenderer SpriteBarrotes;
     public SpriteRenderer SpriteDialogoKeyGas;
     public SpriteRenderer SpriteGasSecundario;
-    
+
     //Var Time
     private readonly float timeToWait = 3.0f;
     private float timeToWaitCur;
     private readonly float timeBetweenScenes = 5;
     private float timeBetweenScenesCur;
-    
+
     //Var Dialog
     private int Dialog = 0;
     
@@ -68,7 +69,8 @@ public class DialogoCap2 : MonoBehaviour
     private bool dialogoSalaControl;
     private bool dialogoKeyGas;
     private bool keyGas;
-
+    public bool exit;
+    
     private void Start() {
         Dialog = 0;
         CanvasObjetivos.enabled = false;
@@ -81,7 +83,6 @@ public class DialogoCap2 : MonoBehaviour
 
     private void Update() {
         ShowText();
-        print(Dialog);
     }
 
     void ShowText() {
@@ -195,6 +196,7 @@ public class DialogoCap2 : MonoBehaviour
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             Dialog = 18;
+            TriggerDialogoLamia.enabled = false;
             VarTexto.text = "Que narices era eso, seguro que está relacionado con la muerte del científico y los ataques";
         }
         else if (Lamia.isDead && Dialog == 18 && Input.GetKeyDown(KeyCode.Return)) {
@@ -294,6 +296,7 @@ public class DialogoCap2 : MonoBehaviour
             TriggerTableroControl.enabled = false;
             ColBarrotes.enabled = false;
             SpriteBarrotes.enabled = false;
+            TriggerBarrotes.enabled = false;
             Dialog = 20;
         }
         else if (dialogoSalaControl && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 20) {
@@ -370,6 +373,10 @@ public class DialogoCap2 : MonoBehaviour
                 ColliderGasSecundario.enabled = false;
                 SpriteGasSecundario.enabled = false;
             }
+        }
+        if (collision.gameObject.name == "Salida") {
+            exit = true;
+            SceneManager.LoadScene(4);
         }
     }
 

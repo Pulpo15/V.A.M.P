@@ -6,15 +6,18 @@ using UnityEngine.UI;
 public class Huamno : MonoBehaviour {
 
     public GameObject Rata;
+    public PasarVariables pasarVariables;
     public Canvas RenderGris;
     public Animator animator;
     public Animator human;
     public Slider hpBar;
-    private int vida;
+    public float vida;
     int num;
 
     void Start () {
         //hpBar.value = vida;
+        pasarVariables = GameObject.FindGameObjectWithTag("Variables").GetComponent<PasarVariables>();
+        vida = pasarVariables.Vida;
     }
 	
     private void OnTriggerStay2D(Collider2D collision) {
@@ -24,7 +27,6 @@ public class Huamno : MonoBehaviour {
             hpBar.value = vida;
             human.SetBool("isDead", true);
             num++;                      
-            //Destroy(gameObject);
             Destroy(Rata);
             
         }

@@ -185,38 +185,8 @@ public class ColisionesCaleb : MonoBehaviour {
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //if (collision.gameObject.name == "Rata")
-        //{
-        //    if (Input.GetMouseButton(0))
-        //    {
-        //        //print("+10 de vida");
-        //        //vida = vida + 10;
-        //        //reputacion = 10;
-        //        //Rata.enabled = false;
-        //        //SpriteRata.enabled = false;
-        //        //Humano.enabled = false;
-        //        //SpriteHumano.enabled = false;                
-        //    }
-        //}
-        //else if (collision.gameObject.name == "Humano")
-        //{
-        //    if (Input.GetMouseButton(0))
-        //    {
-        //        //print("+25 de vida");
-        //        //vida = vida + 25;
-        //        //reputacion = 20;
-        //        //Humano.enabled = false;
-        //        //SpriteHumano.enabled = false;
-        //        //Rata.enabled = false;
-        //        //SpriteRata.enabled = false;
-        //    }
-        //}
-        //else if (collision.gameObject.name == "Lamia")
-        //{
-        //    vida = vidaRecibidaDeLamia;
-        //}
+    private void OnCollisionStay2D(Collision2D collision) {
+
     }
 
     void Moving() {

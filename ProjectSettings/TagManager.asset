@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Variables
+  - Slider
   layers:
   - Default
   - TransparentFX
