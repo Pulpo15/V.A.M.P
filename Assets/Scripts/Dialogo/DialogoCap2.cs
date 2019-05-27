@@ -27,6 +27,11 @@ public class DialogoCap2 : MonoBehaviour
     public Collider2D TriggerTarjetaSalaControl;
     public Collider2D ColCajaGas;
     public Collider2D TriggerHumanityOff;
+    public Collider2D ColBarrotes;
+    public Collider2D TriggerTableroControl;
+    public Collider2D TriggerBarrotes;
+    public Collider2D TriggerDialogoKeyGas;
+    public Collider2D ColliderGasSecundario;
 
     public lamiaScript Lamia;
 
@@ -34,6 +39,9 @@ public class DialogoCap2 : MonoBehaviour
     public SpriteRenderer SpriteTarjetaSalaControl;
     public SpriteRenderer SpriteCajaGas;
     public SpriteRenderer SpritePuertaSalaControl;
+    public SpriteRenderer SpriteBarrotes;
+    public SpriteRenderer SpriteDialogoKeyGas;
+    public SpriteRenderer SpriteGasSecundario;
     
     //Var Time
     private readonly float timeToWait = 3.0f;
@@ -58,6 +66,8 @@ public class DialogoCap2 : MonoBehaviour
     private bool dialogoBarrotes;
     private bool humanityOff;
     private bool dialogoSalaControl;
+    private bool dialogoKeyGas;
+    private bool keyGas;
 
     private void Start() {
         Dialog = 0;
@@ -170,7 +180,7 @@ public class DialogoCap2 : MonoBehaviour
             Dialog = 15;
         }
         else if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 15) {
-            VarTexto.text = "*Embiste 2 veces al Lamia usando el Dash para acabar con el*";
+            VarTexto.text = "*Embiste 2 veces al Lamia usando el Dash para acabar con el, si te alimentas de humanos te detectará antes*";
             Dialog = 16;
         }
         else if (dialogoLamia && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 16) {
@@ -189,6 +199,7 @@ public class DialogoCap2 : MonoBehaviour
         }
         else if (Lamia.isDead && Dialog == 18 && Input.GetKeyDown(KeyCode.Return)) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Objetvios.text = "Encuentra una manera de llegar al laboratorio";
             Texto.enabled = false;
             Lamia.isDead = false;
             Dialog = 19;
@@ -253,8 +264,9 @@ public class DialogoCap2 : MonoBehaviour
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             VarTexto.text = "Estos barrotes estan conectados a un sistema, seguro que los puedo desactivar des de la sala de control";
+            TriggerBarrotes.enabled = false;
         }
-        else if (isOnText && dialogoBarrotes && Input.GetKeyDown(KeyCode.Return)) {
+        if (isOnText && dialogoBarrotes && Input.GetKeyDown(KeyCode.Return)) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
             Objetvios.text = "Desactiva los barrotes";
@@ -273,17 +285,37 @@ public class DialogoCap2 : MonoBehaviour
             Texto.enabled = false;
             Objetvios.text = "Aliméntate";
             isOnText = false;
+            humanityOff = false;
         }
-        if (dialogoSalaControl && isOnText) {
+        if (dialogoSalaControl && isOnText && Dialog == 19) {
             Caleb.bodyType = RigidbodyType2D.Static;
             Texto.enabled = true;
             VarTexto.text = "Parece que he activado algo en el otro camino";
+            TriggerTableroControl.enabled = false;
+            ColBarrotes.enabled = false;
+            SpriteBarrotes.enabled = false;
+            Dialog = 20;
         }
-        else if (dialogoSalaControl && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+        else if (dialogoSalaControl && isOnText && Input.GetKeyDown(KeyCode.Return) && Dialog == 20) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
             Objetvios.text = "Consigue la llave para cerrar el gas";
             dialogoSalaControl = false;
+            isOnText = false;
+            Dialog = 21;
+        }
+        if (dialogoKeyGas && isOnText) {
+            keyGas = true;
+            Caleb.bodyType = RigidbodyType2D.Static;
+            Texto.enabled = true;
+            VarTexto.text = "Parece la llave para cerrar el gas, con esto podré llegar al laboratorio";
+            SpriteDialogoKeyGas.enabled = false;
+            TriggerDialogoKeyGas.enabled = false;
+        }
+        else if (dialogoKeyGas && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+            Caleb.bodyType = RigidbodyType2D.Dynamic;
+            Texto.enabled = false;
+            dialogoKeyGas = false;
             isOnText = false;
         }
     }
@@ -325,6 +357,20 @@ public class DialogoCap2 : MonoBehaviour
             dialogoSalaControl = true;
             isOnText = true;
         }
+        if (collision.gameObject.name == "Barrotes") {
+            dialogoBarrotes = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "Llave") {
+            dialogoKeyGas = true;
+            isOnText = true;
+        }
+        if (collision.gameObject.name == "CerraduraGas") {
+            if (keyGas) {
+                ColliderGasSecundario.enabled = false;
+                SpriteGasSecundario.enabled = false;
+            }
+        }
     }
 
 
@@ -333,10 +379,7 @@ public class DialogoCap2 : MonoBehaviour
             dialogoPuertaSalaControlCol = true;
             isOnText = true;
         }
-        if (collision.gameObject.name == "Barrotes") {
-            dialogoBarrotes = true;
-            isOnText = true;
-        }
+
     }
 
 }
