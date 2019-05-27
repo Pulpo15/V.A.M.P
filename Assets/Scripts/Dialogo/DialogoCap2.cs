@@ -312,7 +312,7 @@ public class DialogoCap2 : MonoBehaviour
             SpriteDialogoKeyGas.enabled = false;
             TriggerDialogoKeyGas.enabled = false;
         }
-        else if (dialogoKeyGas && isOnText && Input.GetKeyDown(KeyCode.Return)) {
+        if (dialogoKeyGas && isOnText && Input.GetKeyDown(KeyCode.Return)) {
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Texto.enabled = false;
             dialogoKeyGas = false;
