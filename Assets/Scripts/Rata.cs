@@ -20,6 +20,10 @@ public class Rata : MonoBehaviour {
         vida = pasarVariables.Vida;
     }
 
+    private void Update() {
+        vida = hpBar.value;
+    }
+
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.name == "Caleb" && Input.GetKeyDown(KeyCode.Return) && num == 0) {
             animator.SetBool("haSalido", false);
