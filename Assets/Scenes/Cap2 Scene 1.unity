@@ -1564,7 +1564,7 @@ GameObject:
   - component: {fileID: 418773459}
   - component: {fileID: 418773461}
   m_Layer: 0
-  m_Name: Llave
+  m_Name: Llavee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2925,6 +2925,7 @@ MonoBehaviour:
   SpriteBarrotes: {fileID: 2146665001}
   SpriteDialogoKeyGas: {fileID: 418773459}
   SpriteGasSecundario: {fileID: 260237408}
+  timeToWaitCur: 0
   isOnText: 1
   exit: 0
 --- !u!114 &699732529
@@ -60444,6 +60445,7 @@ MonoBehaviour:
   ColliderLamia2: {fileID: 1273661120}
   ColliderLamia3: {fileID: 1273661119}
   ColliderLamia4: {fileID: 1273661118}
+  TriggerLamia: {fileID: 887531878}
   Caleb: {fileID: 699732529}
   Reputacion: {fileID: 699732527}
   LamiaGO: {fileID: 1273661114}

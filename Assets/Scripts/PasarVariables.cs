@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class PasarVariables : MonoBehaviour {
 
-    public Trigger Trigger;
-    public DialogoCap2 DialogoCap2;
     public Reputacion Reputacion;
     public Slider HpBar;
     public int Repu;
     public float Vida;
+    public int Comprobador;
 
     // Use this for initialization
     private void Awake() {
@@ -23,17 +22,18 @@ public class PasarVariables : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        DialogoCap2 = GameObject.FindGameObjectWithTag("Player").GetComponent<DialogoCap2>();
         Reputacion = GameObject.FindGameObjectWithTag("Player").GetComponent<Reputacion>();
         HpBar = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
-        if (Trigger.Dialog == 24) {
+        if (Comprobador == 1) {
             Repu = Reputacion.reputation;
             Vida = HpBar.value;
+            Comprobador = 0;
         }
-        if (DialogoCap2.exit) {
+        if (Comprobador == 2) {
             print("AWSd");
             Repu = Reputacion.reputation;
             Vida = HpBar.value;
+            Comprobador = 0;
         }
 	}
 }

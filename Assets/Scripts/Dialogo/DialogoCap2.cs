@@ -44,6 +44,8 @@ public class DialogoCap2 : MonoBehaviour
     public SpriteRenderer SpriteDialogoKeyGas;
     public SpriteRenderer SpriteGasSecundario;
 
+    public PasarVariables pasarVariables;
+
     //Var Time
     private readonly float timeToWait = 3.0f;
     private float timeToWaitCur;
@@ -72,6 +74,7 @@ public class DialogoCap2 : MonoBehaviour
     public bool exit;
     
     private void Start() {
+        pasarVariables = GameObject.FindGameObjectWithTag("Variables").GetComponent<PasarVariables>();
         Dialog = 0;
         CanvasObjetivos.enabled = false;
         Texto.enabled = false;
@@ -321,6 +324,11 @@ public class DialogoCap2 : MonoBehaviour
             dialogoKeyGas = false;
             isOnText = false;
         }
+        if (exit) {
+            pasarVariables.Comprobador = 2;
+            if (timeToWaitCur <= 0)
+                SceneManager.LoadScene(4);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -364,7 +372,7 @@ public class DialogoCap2 : MonoBehaviour
             dialogoBarrotes = true;
             isOnText = true;
         }
-        if (collision.gameObject.name == "Llave") {
+        if (collision.gameObject.name == "Llavee") {
             dialogoKeyGas = true;
             isOnText = true;
         }
@@ -374,9 +382,9 @@ public class DialogoCap2 : MonoBehaviour
                 SpriteGasSecundario.enabled = false;
             }
         }
-        if (collision.gameObject.name == "Salida") {
+        if (collision.gameObject.name == "Salida" && !exit) {
             exit = true;
-            SceneManager.LoadScene(4);
+            timeToWaitCur = timeToWait;
         }
     }
 

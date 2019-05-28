@@ -48,9 +48,11 @@ public class Trigger : MonoBehaviour
     public SpriteRenderer caja;
     public BoxCollider2D boxCollider2D;
 
+    public PasarVariables pasarVariables;
 
     private void Start()
     {
+        pasarVariables = GameObject.FindGameObjectWithTag("Variables").GetComponent<PasarVariables>();
         CanvasObjetivos.enabled = false;
         Texto.enabled = false;
         Diario1.enabled = false;
@@ -299,6 +301,7 @@ public class Trigger : MonoBehaviour
             entradaCloacas = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             Dialog = 24;
+            pasarVariables.Comprobador = 1;
         }
     }
 
