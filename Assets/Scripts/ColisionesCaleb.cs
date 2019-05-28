@@ -62,7 +62,7 @@ public class ColisionesCaleb : MonoBehaviour {
     void Start() {
         dashTime = startDashTime;
         timeToWaitCur = timeToWait;
-        isWalking = true;
+        isWalking = false;
         posEuler = 0;
     }
 
@@ -80,13 +80,13 @@ public class ColisionesCaleb : MonoBehaviour {
 
     void CanWalk() {
         timeToWaitCur -= Time.deltaTime;
-        if (timeToWaitCur <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-                numEnter++;
-            if (numEnter == 2)
-                isWalking = false;
-        }
+        //if (timeToWaitCur <= 0)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Return))
+        //        numEnter++;
+        //    if (numEnter == 2)
+        //        isWalking = false;
+        //}
     }
     
 
