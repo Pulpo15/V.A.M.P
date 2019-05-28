@@ -7262,6 +7262,93 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e222c63d4fe85849831de8f5b4c979c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &534673926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 534673927}
+  - component: {fileID: 534673930}
+  - component: {fileID: 534673929}
+  - component: {fileID: 534673928}
+  m_Layer: 0
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &534673927
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534673926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1046322392}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -941.48, y: -545.02}
+  m_SizeDelta: {x: 21.055, y: 12.089}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &534673928
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534673926}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58357c471297c4f4f87047d0a6175604, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &534673929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534673926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &534673930
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534673926}
 --- !u!1001 &537558519
 Prefab:
   m_ObjectHideFlags: 0
@@ -8910,6 +8997,7 @@ MonoBehaviour:
   PuertaAlmacen1: {fileID: 0}
   caja: {fileID: 0}
   boxCollider2D: {fileID: 0}
+  pasarVariables: {fileID: 0}
 --- !u!4 &864721131 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4265683896763222, guid: a43a389574aa37648a3e59cac79d8dc8,
@@ -56572,6 +56660,11 @@ Transform:
   m_Father: {fileID: 1328418018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.2019987}
+--- !u!224 &1046322392 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224049378339638186, guid: fc8b8d0d2eb75c745a5010d2d4ec230a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1053702536}
 --- !u!4 &1051956336 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4265683896763222, guid: a43a389574aa37648a3e59cac79d8dc8,
@@ -58953,6 +59046,7 @@ MonoBehaviour:
   PuertaAlmacen1: {fileID: 884180993}
   caja: {fileID: 192846903}
   boxCollider2D: {fileID: 192846900}
+  pasarVariables: {fileID: 0}
 --- !u!114 &1526820039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59496,11 +59590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a617b7f92447b46b99c9c05b296c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 1526820038}
   Reputacion: {fileID: 0}
   HpBar: {fileID: 0}
   Repu: 0
   Vida: 0
+  Comprobador: 0
 --- !u!4 &1605802790
 Transform:
   m_ObjectHideFlags: 0

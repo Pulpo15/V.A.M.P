@@ -15,6 +15,8 @@ public class DialogoCap3 : MonoBehaviour {
 
     public Rigidbody2D Caleb;
 
+    public Animator continuara;
+
     //Var Time
     private readonly float timeToWait = 3.0f;
     private float timeToWaitCur;
@@ -88,6 +90,10 @@ public class DialogoCap3 : MonoBehaviour {
             VarTitulo.text = "Caleb";
             VarTexto.text = "Voy a por ti";
             Dialog = 9;
+        }
+        if(Dialog == 9)
+        {
+            continuara.SetBool("dialogFinish", true);
         }
 
     }
