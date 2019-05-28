@@ -1692,7 +1692,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d45f2d5d8ebb7f54d95e1cff00857dde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ac5791a50f7ce74cb7a0b5ab24f48d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -60187,13 +60187,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255211501}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3554445, w: 0.93469745}
-  m_LocalPosition: {x: 28.130913, y: 74.947876, z: -0.16542535}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4592619, w: 0.88830096}
+  m_LocalPosition: {x: 28.12, y: 74.97, z: -0.16542535}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1837444833}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.641003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -54.679}
 --- !u!61 &1255211503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60210,7 +60210,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -60235,7 +60235,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -60279,7 +60279,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5d66b2357b117f54ca74401ff917d534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f0f1368d611854429e39e0ded8b1aa1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -63126,11 +63126,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4243811379312220, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -27.911
+      value: -35.4
       objectReference: {fileID: 0}
     - target: {fileID: 4243811379312220, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 132.906
+      value: 123.7
       objectReference: {fileID: 0}
     - target: {fileID: 4243811379312220, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalScale.y
@@ -63722,11 +63722,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4427255880149768, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -61.213
+      value: -51.9
       objectReference: {fileID: 0}
     - target: {fileID: 4427255880149768, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 91.926
+      value: 103.3
       objectReference: {fileID: 0}
     - target: {fileID: 4427255880149768, guid: dab865f2976d05f4e9b6e4c5372f15de, type: 2}
       propertyPath: m_LocalScale.x
