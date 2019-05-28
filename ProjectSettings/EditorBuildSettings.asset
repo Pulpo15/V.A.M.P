@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cap 2 esc 2.unity
     guid: b3f6242e76f97fe4eab09ed2c941c8f5
+  - enabled: 1
+    path: Assets/Scenes/Cap 3.unity
+    guid: 6aa2dfcef3168734aaddb57f0dc17f06
   m_configObjects: {}

@@ -66,11 +66,11 @@ public class Trigger : MonoBehaviour
     {
         ShowText();
         timeBetweenScenesCur -= Time.deltaTime;
-        //if (timeBetweenScenesCur <= 0 && Dialog == 24)
-        //{
-        //    SceneManager.LoadScene(3);
-        //    transicion.SetBool("changeScene", false);
-        //}
+        if (timeBetweenScenesCur <= 0 && Dialog == 24)
+        {
+            SceneManager.LoadScene(3);
+            transicion.SetBool("changeScene", false);
+        }
 
     }
 

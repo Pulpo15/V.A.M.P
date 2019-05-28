@@ -26,6 +26,7 @@ public class DialogoCap2Scene2 : MonoBehaviour {
 
     //Boleans
     public bool isOnText;
+    private bool canExit;
 
     void Start () {
         Dialog = 0;
@@ -63,10 +64,18 @@ public class DialogoCap2Scene2 : MonoBehaviour {
             Texto.enabled = false;
             Caleb.bodyType = RigidbodyType2D.Dynamic;
             LamiaDead.allLamiaDead = false;
+            canExit = true;
         }
     }
 
-	void Update () {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.name == "TriggerExit") {
+            if (canExit)
+                SceneManager.LoadScene(5);
+        }  
+    }
+
+    void Update () {
         ShowText();
 	}
 }

@@ -7,28 +7,27 @@ public class MenuScript : MonoBehaviour {
     private int numScene;
     public Animator animator;
     public Trigger trigger;
-    
+    string sceneName;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        sceneName = PlayerPrefs.GetString("lastLoadedScene");
+    }
 
     
 	
 	// Update is called once per frame
 	void Update () {
-        if (trigger.Dialog == 24)
-        {
-            ChangeScene(3);
-            
-        }
-        
-	}
+
+        print(sceneName);
+    }
 
     public void ChangeToStory()
     {
-        SceneManager.LoadScene(1);
+        if (sceneName == "")
+            SceneManager.LoadScene(1);
+        else
+            SceneManager.LoadScene(sceneName);
     }
 
 
@@ -48,6 +47,7 @@ public class MenuScript : MonoBehaviour {
 
     public void Exit()
     {
+        PlayerPrefs.SetString("lastLoadedScene", "");
         Application.Quit();
     }
 }

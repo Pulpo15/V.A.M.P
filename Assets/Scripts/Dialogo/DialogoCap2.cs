@@ -43,6 +43,9 @@ public class DialogoCap2 : MonoBehaviour
     public SpriteRenderer SpriteBarrotes;
     public SpriteRenderer SpriteDialogoKeyGas;
     public SpriteRenderer SpriteGasSecundario;
+    public SpriteRenderer SpriteLlaveGas;
+
+    public Sprite SpriteLLaveGasOn;
 
     public PasarVariables pasarVariables;
 
@@ -378,6 +381,7 @@ public class DialogoCap2 : MonoBehaviour
         }
         if (collision.gameObject.name == "CerraduraGas") {
             if (keyGas) {
+                SpriteLlaveGas.sprite = SpriteLLaveGasOn;
                 ColliderGasSecundario.enabled = false;
                 SpriteGasSecundario.enabled = false;
             }

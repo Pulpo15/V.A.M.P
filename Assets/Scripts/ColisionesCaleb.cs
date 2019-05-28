@@ -161,12 +161,12 @@ public class ColisionesCaleb : MonoBehaviour {
         if (collision.gameObject.name == "Acceder2Piso")
         {
             gameObject.transform.position = new Vector3(26, 109);
-            stairsFade.SetBool("changeStair", true);
+            //stairsFade.SetBool("changeStair", true);
         }
         if (collision.gameObject.name == "Volver1Piso")
         {
             gameObject.transform.position = new Vector3(-13, 101);
-            stairsFade.SetBool("changeStair", false);
+            //stairsFade.SetBool("changeStair", false);
         }
 
     }

@@ -16,6 +16,8 @@ public class PasarVariables : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
     void Start () {
+        Reputacion = GameObject.FindGameObjectWithTag("Player").GetComponent<Reputacion>();
+        HpBar = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
         Reputacion.reputation = Repu;
         HpBar.value = Vida;
 	}

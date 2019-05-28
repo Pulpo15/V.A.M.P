@@ -91,8 +91,9 @@ public class DialogoCap3 : MonoBehaviour {
             VarTexto.text = "Voy a por ti";
             Dialog = 9;
         }
-        if(Dialog == 9)
+        else if (Dialog == 9 && Input.GetKeyDown(KeyCode.Return))
         {
+            Texto.enabled = false;
             continuara.SetBool("dialogFinish", true);
         }
 
