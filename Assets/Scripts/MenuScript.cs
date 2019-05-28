@@ -26,6 +26,12 @@ public class MenuScript : MonoBehaviour {
         
 	}
 
+    public void ChangeToStory()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+
     public void ChangeScene(int indexScene)
     {
         numScene = indexScene;
